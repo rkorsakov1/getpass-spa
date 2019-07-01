@@ -96,8 +96,9 @@ class Generator extends React.Component {
             service, } = state;
         return (
             <>
-
+                <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
                 <InputField label='Login' value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
+                <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
                 <InputField label='Website' value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
             </>
         )

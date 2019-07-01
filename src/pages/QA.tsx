@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Typography, CardContent } from '@material-ui/core';
+import { Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Divider } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
 import CardWrapper from 'components/CardWrapper';
-
-
+import { at, I18n, useTranslation } from 'localization';
+import ReactMarkdown from 'react-markdown';
 interface IQA {
     q: string,
     a: string
@@ -10,30 +11,37 @@ interface IQA {
 
 
 const QA = () => {
+    const { t } = useTranslation();
 
     const QAdata: IQA[] = [];
 
-    const QABlock = ({ q, a }: IQA) => {
+    for (let i = 0; i < 11; i++) {
+        const q: string = t(at(parseInt(I18n[`q${i}` as any], 10)));
+        const a: string = t(at(parseInt(I18n[`a${i}` as any], 10)));
+        QAdata.push({ q, a });
+    }
+
+    const QABlock = ({ q, a }: IQA, key: number) => {
         return (
-            <Grid item key={q}>
-                <Typography variant="h6">Q: {q}</Typography>
-                <Typography variant="body1">A: {a}</Typography>
-            </Grid>
+            <ExpansionPanel key={key}>
+                <ExpansionPanelSummary
+                    expandIcon={<ExpandMore />}
+                >
+                    <Typography variant="subtitle1">{q}</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <div style={{ textAlign: "justify", fontFamily: "Roboto" }}>
+                        <Divider />
+                        <ReactMarkdown source={a} />
+                    </div>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
         );
     };
 
     return (
-        <CardWrapper>
-            <CardContent>
-                <Grid container
-                    direction="column"
-                    justify="center"
-                    alignItems="stretch">
-                    {QAdata.map((el: IQA, i: number) => QABlock(el))}
-
-                </Grid>
-
-            </CardContent>
+        <CardWrapper asCard={false}>
+            {QAdata.map((el: IQA, i: number) => QABlock(el, i))}
         </CardWrapper>
     )
 }

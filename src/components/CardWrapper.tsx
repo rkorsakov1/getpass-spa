@@ -3,16 +3,18 @@ import { Grid, Card } from '@material-ui/core';
 
 
 interface CardWrapperProps {
+    asCard?: boolean
     width?: number
     children?: JSX.Element[] | JSX.Element;
 }
 
 const defaultProps: CardWrapperProps = {
     width: 600,
+    asCard: true,
     children: <React.Fragment />
 }
 
-const CardWrapper: React.FunctionComponent<CardWrapperProps> = ({ width, children }) => {
+const CardWrapper: React.FunctionComponent<CardWrapperProps> = ({ width, children, asCard }) => {
 
     return (
         <Grid
@@ -20,9 +22,15 @@ const CardWrapper: React.FunctionComponent<CardWrapperProps> = ({ width, childre
             justify="center"
             alignItems="center"
         >
-            <Card style={{ width }}>
-                {children}
-            </Card>
+            {
+                asCard ?
+                <Card style={{ width }}>
+                    {children}
+                </Card> :
+                <div style={{ width }}>
+                    {children}
+                </div>
+            }
         </Grid>
     )
 }
