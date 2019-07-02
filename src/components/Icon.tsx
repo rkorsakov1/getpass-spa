@@ -10,13 +10,15 @@ interface IconProps {
 
 const Icon: React.FunctionComponent<IconProps> = ({ tooltip, children, onClick, enabled }) => (
     <Tooltip TransitionComponent={Zoom} title={tooltip} style={{ fontSize: 40 }}>
-        <IconButton
-            disabled={!enabled}
-            color="secondary"
-            onClick={onClick}
-        >
-            {children}
-        </IconButton>
+        <div>
+            <IconButton
+                disabled={!enabled}
+                color="secondary"
+                onClick={onClick}
+            >
+                {children}
+            </IconButton>
+        </div>
     </Tooltip>
 );
 

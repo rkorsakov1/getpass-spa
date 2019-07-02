@@ -68,9 +68,9 @@ const Downloads = () => {
         },
     ];
 
-    const DownloadBlock = ({ enabled, icon, name, description, hyperlink }: IDownloadData) => {
+    const DownloadBlock = ({ enabled, icon, name, description, hyperlink }: IDownloadData, key: number) => {
         return (
-            <>
+            <div key={key}>
                 <Grid item style={{ opacity: enabled ? 1.0 : 0.4 }}>
                     <Grid container direction="row"
                         alignItems="center">
@@ -89,14 +89,14 @@ const Downloads = () => {
                     </Grid>
                 </Grid>
                 <Divider />
-            </>
+            </div>
         );
     };
 
     return (
         <CardWrapper>
             <Grid container direction="column" style={{ padding: 8 }}>
-                {DownloadData.map((el: IDownloadData, i: number) => DownloadBlock(el))}
+                {DownloadData.map((el: IDownloadData, i: number) => DownloadBlock(el, i))}
             </Grid>
         </CardWrapper>
     )
