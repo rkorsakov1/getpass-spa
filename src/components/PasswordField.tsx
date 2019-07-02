@@ -23,11 +23,13 @@ export default ({ value, label }: Props) => {
                         value={value}
                         label={label}
                         type={isVisible ? 'text' : 'password'}
+                        aria-label={`password value`}
                         InputProps={{
                             readOnly: true,
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <IconButton
+                                        aria-label="password visibility"
                                         color="secondary"
                                         onClick={() => setVisibility(!isVisible)}
                                     >

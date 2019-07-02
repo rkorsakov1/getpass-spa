@@ -29,6 +29,7 @@ export default ({ label, value, onChange, disabled, adornment }: Props) => {
 
     return (
         <TextField
+            aria-label={`${label} value`}
             style={{ marginBottom: '8px', }}
             disabled={disabled === undefined ? false : disabled}
             fullWidth

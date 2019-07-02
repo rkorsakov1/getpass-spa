@@ -63,17 +63,20 @@ export default ({ label, value, onChange, min, max }: Props) => {
             alignItems="center"
             style={{ paddingBottom: '8px' }}>
             <IconButton disabled={(num > 0) ? false : true}
+                aria-label={`decrease ${label}`}
                 onClick={() => onButtonClick(num - 1)}
             >
                 <ChevronLeft />
             </IconButton>
             <TextField
+                aria-label={`${label} value`}
                 onBlur={onFocusLeave}
                 value={isEmpty ? '' : num}
                 onChange={onInputChange}
                 style={{ width: '40px' }}
             />
             <IconButton
+                aria-label={`increase ${label}`}
                 onClick={() => onButtonClick(num + 1)}
             >
                 <ChevronRight />

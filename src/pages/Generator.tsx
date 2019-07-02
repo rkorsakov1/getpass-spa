@@ -218,6 +218,7 @@ class Generator extends React.Component {
                 </Grid>
                 <Grid item>
                     <IconButton
+                        aria-label="show advanced settings"
                         style={{ marginRight: '8px', }}
                         color="secondary"
                         onClick={() => this.setState({ showSettings: !showSettings })}
