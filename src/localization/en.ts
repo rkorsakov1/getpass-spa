@@ -90,7 +90,7 @@ Note every input IS case sensitive! Changing a letter in website or login or sec
     [I18n.a9]: `
 There are some more and less important services where you want to authenticate from the data safety perspective. No one restricts you from using different secret keywords for different websites (but you must remember which one binds to which one). 
 
-goiFor example, for everyday not important service usage, you may use simple secret keyword, for example: “.NETdev2019”, but for others, maybe your bank account, you could use something more complex like “WhatAGre@t8267TimeToBeA%Developer%!”.
+For example, for everyday not important service usage, you may use simple secret keyword, for example: “.NETdev2019”, but for others, maybe your bank account, you could use something more complex like “WhatAGre@t8267TimeToBeA%Developer%!”.
 `,
     [I18n.q10]: 'What are the advantages and disadvantages of using Getpass?',
     [I18n.a10]: `
