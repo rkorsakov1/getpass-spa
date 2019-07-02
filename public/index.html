@@ -67,94 +67,6 @@
   </script>
 </head>
 
-<style>
-  html {
-    background: #3D4BA5;
-    overflow-x: hidden;
-  }
-
-  .content {
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100vw;
-    position: absolute;
-    overflow-x: visible;
-  }
-
-  .mobile {
-    display: none;
-  }
-
-  .desktop {
-    display: display;
-  }
-
-  @media (max-width : 600px) {
-    .mobile {
-      display: block;
-    }
-
-    .desktop {
-      display: none;
-    }
-  }
-
-  .background_mobile {
-    z-index: 1;
-    position: absolute;
-    margin-top: 5vh;
-    border-left: 100vw solid #FAFAFA;
-    border-top: 10vh solid transparent;
-    border-bottom: 10vh solid transparent;
-    height: 80vh;
-  }
-
-  .background_desktop {
-    position: relative;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .background_desktop .wave {
-    opacity: 0.4;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: #5C6BC0;
-    width: 256vw;
-    height: 256vw;
-    margin-left: -128vw;
-    margin-top: 30vh;
-    border-radius: 43%;
-    animation: humming 30s infinite linear;
-  }
-
-  .background_desktop .wave._three {
-    animation: humming 34s infinite linear;
-  }
-
-  .background_desktop .wave._two {
-    animation: humming 46s infinite linear;
-    opacity: 1;
-    background: #283593;
-  }
-
-  @keyframes humming {
-    from {
-      transform: rotate(0deg);
-    }
-
-    from {
-      transform: rotate(360deg);
-    }
-  }
-</style>
-
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
@@ -173,7 +85,6 @@
 
   <div class="mobile">
     <div class="background_mobile">
-
     </div>
   </div>
 
