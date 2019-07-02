@@ -2,8 +2,7 @@ import React from 'react';
 import { Grid, Button } from '@material-ui/core';
 import { GithubCircle, Android, Apple, AppleSafari, GoogleChrome } from 'mdi-material-ui';
 
-import Icon from 'components/Icon';
-import { navigation } from 'components/RouterWrapper';
+import { Icon, navigation } from 'components';
 
 
 const Navigation = () => (

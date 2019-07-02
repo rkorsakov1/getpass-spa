@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Divider } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
-import CardWrapper from 'components/CardWrapper';
+import { CardWrapper } from 'components';
 import { at, I18n, useTranslation } from 'localization';
 import ReactMarkdown from 'react-markdown';
 interface IQA {

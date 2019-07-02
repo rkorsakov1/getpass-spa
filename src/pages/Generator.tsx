@@ -2,18 +2,13 @@ import React from 'react';
 import MetaTags from 'react-meta-tags';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 
-import InputField from 'components/InputField';
-import SwitchField from 'components/SwitchField';
-import PasswordField from 'components/PasswordField';
+import { InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper } from 'components';
 import { copyToClipboard, generatePasswordImplementation, GeneratorState } from 'auxiliary';
 import { ExpandMore, Settings, Security } from "@material-ui/icons";
-import NumericInputField from 'components/NumericInputField';
-import { NotificationContext } from 'components/NotifyWrapper';
 
 import jdenticon from 'jdenticon';
 import Loading from 'pages/Loading';
 import { defaults } from "auxiliary";
-import CardWrapper from 'components/CardWrapper';
 
 class Generator extends React.Component {
     state = {

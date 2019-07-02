@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Divider, CssBaseline, AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, Button, Grid } from '@material-ui/core';
 import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Clear, Menu } from '@material-ui/icons';
-import { navigation } from 'components/RouterWrapper';
+import { navigation, LanguagePicker } from 'components';
 import { at, I18n, useTranslation } from 'localization';
-import LanguagePicker from 'components/LanguagePicker';
 
 const styles = (theme: Theme) => createStyles({
 	menuButton: {

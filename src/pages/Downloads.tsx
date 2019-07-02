@@ -1,9 +1,8 @@
 import React from 'react';
 import { Grid, Typography, Divider } from '@material-ui/core';
-import CardWrapper from 'components/CardWrapper';
 import { Android, Apple, AppleSafari, GoogleChrome, DesktopMac, Linux, Windows } from 'mdi-material-ui';
 
-import Icon from 'components/Icon';
+import { Icon, CardWrapper} from 'components';
 
 interface IDownloadData {
     enabled: boolean,

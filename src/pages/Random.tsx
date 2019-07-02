@@ -2,15 +2,10 @@ import React from 'react';
 import MetaTags from 'react-meta-tags';
 import { CardContent, CardActions, Grid, Button } from '@material-ui/core';
 
-import SwitchField from 'components/SwitchField';
-import PasswordField from 'components/PasswordField';
+import {SwitchField, PasswordField, NumericInputField, InputField, NotificationContext, CardWrapper} from 'components';
 import { copyToClipboard, randomImplementation } from 'auxiliary';
-import NumericInputField from 'components/NumericInputField';
-import InputField from 'components/InputField';
 import { alphabet } from 'auxiliary/alphabet';
-import { NotificationContext } from 'components/NotifyWrapper';
 import { defaults } from "auxiliary";
-import CardWrapper from 'components/CardWrapper';
 import Loading from './Loading';
 
 class Random extends React.Component {
