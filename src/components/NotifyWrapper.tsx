@@ -30,7 +30,7 @@ const NotifyWrapper = ({ children }: Props) => {
     useEffect(() => {
         console.log('registered');
         serviceWorker.register({
-            onSuccess: (registration: ServiceWorkerRegistration) => updateMessage('Content is cached for offline use.'),
+            onSuccess: (registration: ServiceWorkerRegistration) => updateMessage('Content is cached for offline use [PWA ready].'),
             onUpdate: (registration: ServiceWorkerRegistration) => updateMessage('New content is available, please reload your web browser'),
         });
     });
@@ -38,7 +38,7 @@ const NotifyWrapper = ({ children }: Props) => {
     const renderSnackBar = () => {
         return (
             <Snackbar
-                autoHideDuration={2048}
+                autoHideDuration={4096}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 open={open}
                 message={message}
