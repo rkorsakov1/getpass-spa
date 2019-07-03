@@ -1,6 +1,7 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { Snackbar, Fade, IconButton } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
+import * as serviceWorker from 'serviceWorker';
 
 //  https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 const NotificationContext = createContext({
@@ -25,6 +26,14 @@ const NotifyWrapper = ({ children }: Props) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        console.log('registered');
+        serviceWorker.register({
+            onSuccess: (registration: ServiceWorkerRegistration) => updateMessage('Content is cached for offline use.'),
+            onUpdate: (registration: ServiceWorkerRegistration) => updateMessage('New content is available, please reload your web browser'),
+        });
+    });
 
     const renderSnackBar = () => {
         return (
