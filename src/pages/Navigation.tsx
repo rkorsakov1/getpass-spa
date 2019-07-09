@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Divider, CssBaseline, AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, Button, Grid } from '@material-ui/core';
 import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Clear, Menu } from '@material-ui/icons';
 import { navigation, LanguagePicker } from 'components';
-import { at, I18n, useTranslation } from 'localization';
+import { at, I18n, useTranslation, fallback } from 'localization';
 
 const styles = (theme: Theme) => createStyles({
 	menuButton: {
@@ -34,7 +34,7 @@ interface Props extends WithStyles<typeof styles> {
 const Navigation = withStyles(styles)(
 	({ children, classes, direction }: Props) => {
 		const [mobileOpen, setMobileOpen] = useState(false);
-		const { t } = useTranslation();
+		const { t, i18n } = useTranslation();
 
 		const handleDrawerToggle = () => {
 			setMobileOpen(!mobileOpen);
@@ -44,7 +44,9 @@ const Navigation = withStyles(styles)(
 			if (handleChange) {
 				handleDrawerToggle();
 			}
-			navigation.push(destination);
+
+			const language = fallback(i18n.language);
+			navigation.push(`/${language}${destination}`);
 		};
 
 		const renderNavigationList = (handleChange: boolean) => (

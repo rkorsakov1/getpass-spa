@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLanguageMeta, locales, ILanguageMeta } from 'localization';
+import { getLanguageMeta, locales, ILanguageMeta, fallback } from 'localization';
 import { MenuItem, Select, Input } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
@@ -14,7 +14,7 @@ const LanguagePicker = () => {
         const localeCodes: string[] = Object.values(locales);
         const languages: ILanguageMeta[] = localeCodes.map((locale: string) => getLanguageMeta(locale));
 
-        const currentLanguage = i18next.language;
+        const currentLanguage = fallback(i18n.language);
 
         return (
             <Select

@@ -22,6 +22,7 @@ enum I18n {
     q8, a8,
     q9, a9,
     q10, a10,
+    CaseSensitive,
 }
 
 const at = (location: I18n) => {
@@ -36,8 +37,8 @@ export interface ILanguageMeta {
 
 const getLanguageMeta = (inputLocale: string): ILanguageMeta => {
     switch (inputLocale) {
-        //case locales.ru:
-        //return { name: 'Русский', assetPath: 'rus.png', code: 'ru' };
+        case locales.ru:
+            return { name: 'Русский', assetPath: 'rus.png', code: 'ru' };
 
         case locales.en:
         default:
@@ -45,4 +46,6 @@ const getLanguageMeta = (inputLocale: string): ILanguageMeta => {
     }
 }
 
-export { getLanguageMeta, locales, at, I18n, useTranslation }
+const fallback = (language: string): string => Object.values(locales).includes(language) ? language : "en";
+
+export { getLanguageMeta, locales, at, I18n, useTranslation, fallback }

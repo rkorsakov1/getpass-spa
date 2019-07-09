@@ -15,10 +15,20 @@ const resources = {
   }
 }
 
+const detection = {
+  // order and from where user language should be detected
+  order: ['path'],
+
+  // keys or params to lookup language from
+  lookupQuerystring: 'lang',
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    detection,
+
     // we init with resources
     resources,
     fallbackLng: "en",

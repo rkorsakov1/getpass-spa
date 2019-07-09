@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { NotFound } from 'pages';
 import { Generator, Random, Navigation, Direction, QA } from 'pages';
@@ -14,11 +14,12 @@ const App = () => (
                 <MuiThemeProvider theme={light}>
                     <Navigation direction={Direction.left}>
                         <AnimatedSwitch>
-                            <Route path="/" exact component={Generator} />
-                            <Route path="/generator" exact component={Generator} />
-                            <Route path="/download" exact component={Downloads} />
-                            <Route path="/random" exact component={Random} />
-                            <Route path="/qa" exact component={QA} />
+                            <Route path="/:lang(en|ru)/" exact component={Generator} />
+                            <Route path="/:lang(en|ru)/generator" exact component={Generator} />
+                            <Route path="/:lang(en|ru)/download" exact component={Downloads} />
+                            <Route path="/:lang(en|ru)/random" exact component={Random} />
+                            <Route path="/:lang(en|ru)/qa" exact component={QA} />
+                            <Redirect from='/' exact to='/en/' />
                             <Route component={NotFound} />
                         </AnimatedSwitch>
                     </Navigation>

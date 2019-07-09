@@ -6,6 +6,7 @@ export default {
     [I18n.NavigationDownload]: 'Download',
     [I18n.NavigationGenerator]: 'Generator',
     [I18n.NavigationRandom]: 'Random',
+    [I18n.CaseSensitive]: 'case sensitive',
 
     [I18n.q0]: 'What is Getpass?',
     [I18n.a0]: `
