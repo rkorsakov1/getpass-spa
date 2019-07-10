@@ -23,19 +23,21 @@ const QA = () => {
 
     const QABlock = ({ q, a }: IQA, key: number) => {
         return (
-            <ExpansionPanel key={key}>
-                <ExpansionPanelSummary
-                    expandIcon={<ExpandMore />}
-                >
-                    <Typography variant="subtitle1">{q}</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <div style={{ textAlign: "justify", fontFamily: "Roboto" }}>
-                        <Divider />
-                        <ReactMarkdown source={a} />
-                    </div>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
+            <div>
+                <ExpansionPanel key={key} style={{ marginBottom: 8 }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMore />}
+                    >
+                        <Typography variant="subtitle1">{q}</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <div style={{ textAlign: "justify", fontFamily: "Roboto" }}>
+                            <Divider />
+                            <ReactMarkdown source={a} />
+                        </div>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </div>
         );
     };
 

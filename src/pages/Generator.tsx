@@ -90,12 +90,12 @@ class Generator extends React.Component {
         const { login,
             service, } = state;
         return (
-            <>
+            <React.Fragment>
                 <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
                 <InputField label='Login' value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
                 <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
                 <InputField label='Website' value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
-            </>
+            </React.Fragment>
         )
     }
 
@@ -161,28 +161,30 @@ class Generator extends React.Component {
         const costHumanReadable = 1 << costFactor;
         const blockSizeHumanReadable = Math.round(1000 * costHumanReadable * blockSizeFactor * 128 / 1024 / 1024) / 1000;
         return (
-            <ExpansionPanel>
-                <ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
-                    <Security color="secondary" />
-                    <Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails style={{ paddingRight: 2 }}>
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="flex-start"
-                    >
-                        <Typography variant="caption">Warning: You must be confident in the changes you make. This directly affects the time of generating passwords, as well as the result itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.</Typography>
-                        <NumericInputField label={`Cost factor: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
-                        <NumericInputField label={`Block size factor: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
-                        <div>
-                            <Button variant="contained" onClick={() => updateScrypt(12, 4)}>default</Button>
-                            <Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => updateScrypt(16, 8)}>tough</Button>
-                        </div>
-                    </Grid>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
+            <div>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
+                        <Security color="secondary" />
+                        <Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails style={{ paddingRight: 2 }}>
+                        <Grid
+                            container
+                            direction="column"
+                            justify="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="caption">Warning: You must be confident in the changes you make. This directly affects the time of generating passwords, as well as the result itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.</Typography>
+                            <NumericInputField label={`Cost factor: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
+                            <NumericInputField label={`Block size factor: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
+                            <div>
+                                <Button variant="contained" onClick={() => updateScrypt(12, 4)}>default</Button>
+                                <Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => updateScrypt(16, 8)}>tough</Button>
+                            </div>
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </div>
         );
     }
 
