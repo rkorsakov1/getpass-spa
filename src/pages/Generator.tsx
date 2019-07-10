@@ -1,6 +1,7 @@
 import React from 'react';
 import MetaTags from 'react-meta-tags';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
+//import {Helmet} from "react-helmet";
 
 import { InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper } from 'components';
 import { copyToClipboard, generatePasswordImplementation, GeneratorState } from 'auxiliary';
@@ -9,6 +10,7 @@ import { ExpandMore, Settings, Security } from "@material-ui/icons";
 import jdenticon from 'jdenticon';
 import Loading from 'pages/Loading';
 import { defaults } from "auxiliary";
+import { HrefLang } from 'components/HrefLang';
 
 class Generator extends React.Component {
     state = {
@@ -236,6 +238,7 @@ class Generator extends React.Component {
                 <MetaTags>
                     <title>Getpass | Strong Password Generator</title>
                     <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
+                    <HrefLang />
                 </MetaTags>
                 <Loading open={isGenerating} />
                 <CardWrapper>

@@ -1,12 +1,14 @@
 import React from 'react';
 import MetaTags from 'react-meta-tags';
 import { CardContent, CardActions, Grid, Button } from '@material-ui/core';
+//import {Helmet} from "react-helmet";
 
 import {SwitchField, PasswordField, NumericInputField, InputField, NotificationContext, CardWrapper} from 'components';
 import { copyToClipboard, randomImplementation } from 'auxiliary';
 import { alphabet } from 'auxiliary/alphabet';
 import { defaults } from "auxiliary";
 import Loading from './Loading';
+import { HrefLang } from 'components/HrefLang';
 
 class Random extends React.Component {
     state = {
@@ -132,6 +134,7 @@ class Random extends React.Component {
                 <MetaTags>
                     <title>Getpass | Strong Password Generator</title>
                     <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
+                    <HrefLang />
                 </MetaTags>
                 <Loading open={isGenerating} />
                 <CardWrapper>

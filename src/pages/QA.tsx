@@ -3,6 +3,10 @@ import { Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummar
 import { ExpandMore } from '@material-ui/icons';
 import { CardWrapper } from 'components';
 import { at, I18n, useTranslation } from 'localization';
+//import { Helmet } from "react-helmet";
+
+import MetaTags from 'react-meta-tags';
+import { HrefLang } from 'components/HrefLang';
 import ReactMarkdown from 'react-markdown';
 interface IQA {
     q: string,
@@ -42,9 +46,16 @@ const QA = () => {
     };
 
     return (
-        <CardWrapper asCard={false}>
-            {QAdata.map((el: IQA, i: number) => QABlock(el, i))}
-        </CardWrapper>
+        <React.Fragment>
+            <MetaTags>
+                <title>Getpass | Strong Password Generator</title>
+                <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
+                <HrefLang />
+            </MetaTags>
+            <CardWrapper asCard={false}>
+                {QAdata.map((el: IQA, i: number) => QABlock(el, i))}
+            </CardWrapper>
+        </React.Fragment>
     )
 }
 
