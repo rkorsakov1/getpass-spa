@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Divider, CssBaseline, AppBar, Drawer, Hidden, IconButton, Toolbar, Typography, Button, Grid } from '@material-ui/core';
 import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Clear, Menu } from '@material-ui/icons';
