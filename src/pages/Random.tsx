@@ -6,17 +6,22 @@ import { SwitchField, PasswordField, NumericInputField, InputField, Notification
 import { copyToClipboard, randomImplementation } from 'auxiliary';
 import { alphabet } from 'auxiliary/alphabet';
 import colors from 'theme/colors';
+import { IRandom } from 'auxiliary/random';
 
-class Random extends React.Component {
-	state = {
-		valid: true,
-		buttonText: 'GeneratePassword',
-		password: '',
-		length: 18,
-		lower: true,
-		upper: true,
-		number: true,
-		special: true,
+interface IValid {
+	message: string,
+	isValid: boolean
+}
+
+const Random: React.FC = (): JSX.Element => {
+	const [valid, setValid] = React.useState<IValid>({
+		message: 'Generate password',
+		isValid: true
+	});
+	const [isGenerating, setIsGenerating] = React.useState<boolean>(false);
+	const [password, setPassword] = React.useState<string>('');
+
+	const [state, setState] = React.useState<IRandom>({
 		customAlphabetFlag: false,
 		customAlphabetValue: alphabet({
 			lower: true,
@@ -24,43 +29,34 @@ class Random extends React.Component {
 			number: true,
 			special: true,
 		}),
-		isGenerating: false,
-	}
+		lower: true,
+		upper: true,
+		number: true,
+		special: true,
+		length: 18,
+	});
 
-	onChange = (propName: string, value: any) => {
-		let state = { ...this.state, [propName]: value };
+	const onChange = (propName: string, value: any) => {
+		const { customAlphabetFlag } = state;
+		const customAlphabetValue = customAlphabetFlag ? alphabet(state) : Array.from(new Set(state.customAlphabetValue.split(''))).join('');
 
-		let customAlphabetValue = '';
-		if (!state.customAlphabetFlag) {
-			customAlphabetValue = alphabet({
-				lower: state.lower,
-				upper: state.upper,
-				number: state.number,
-				special: state.special,
-			})
-		}
-		else {
-			customAlphabetValue = Array.from(new Set(state.customAlphabetValue.split(''))).join('');
-		}
 		if (customAlphabetValue.length > 0) {
-			state.buttonText = 'Get Pass!';
-			state.valid = true;
+			setValid({ isValid: true, message: 'Get Pass!' });
 		} else {
-			state.buttonText = 'Alphabet cannot be empty!';
-			state.valid = false;
+			setValid({ isValid: false, message: 'Alphabet cannot be empty!' });
 		}
 
-		this.setState({ ...state });
-		this.setState({ customAlphabetValue });
+		const newState = { ...state, customAlphabetValue, [propName]: value };
+		setState(newState);
 	}
-	generatePassword = async (notify: (message: string) => void) => {
-		this.setState({ isGenerating: true });
+	const generatePassword = async (notify: (message: string) => void) => {
+		setIsGenerating(true);
 		setTimeout(async () => {
 			try {
-				const pass = await randomImplementation(this.state);
+				const pass = await randomImplementation(state);
 
 				notify('Password is generated and copied to clipboard');
-				this.setState({ password: pass, isGenerating: false });
+				setPassword(pass);
 
 				setTimeout(() => {
 					copyToClipboard(pass);
@@ -68,18 +64,15 @@ class Random extends React.Component {
 			}
 			catch{
 				notify('Incompatible core params!');
-				this.setState({ isGenerating: false });
+			}
+			finally {
+				setIsGenerating(false);
 			}
 		}, 16);
 	}
 
-	renderOptions = () => {
-		const { state, onChange } = this;
-		const { length,
-			lower,
-			upper,
-			number,
-			special, } = state;
+	const renderOptions = () => {
+		const { length, lower, upper, number, special, } = state;
 		return (
 			<>
 				<SwitchField label='Numbers (0-9)' value={number} onChange={(value: boolean) => onChange('number', value)} />
@@ -91,12 +84,8 @@ class Random extends React.Component {
 		);
 	}
 
-	renderCustomAlphabet = () => {
-		const { state, onChange } = this;
-		const {
-			customAlphabetFlag,
-			customAlphabetValue,
-		} = state;
+	const renderCustomAlphabet = () => {
+		const { customAlphabetFlag, customAlphabetValue, } = state;
 
 		return (
 			<>
@@ -106,52 +95,43 @@ class Random extends React.Component {
 		);
 	}
 
-	renderGenerateButton = () => {
-		const { state, generatePassword } = this;
-		const {
-			valid,
-			buttonText,
-		} = state;
+	const renderGenerateButton = () => {
+		const { isValid, message, } = valid;
 
 		return (
 			<NotificationContext.Consumer>
 				{({ updateMessage }) =>
-					<Button variant="contained" color="primary" disabled={!valid} onClick={() => generatePassword(updateMessage)}>
-						{buttonText}
+					<Button variant="contained" color="primary" disabled={!isValid} onClick={() => generatePassword(updateMessage)}>
+						{message}
 					</Button>
 				}
 			</NotificationContext.Consumer>);
 	}
 
-	render() {
-		const { state, renderGenerateButton, renderCustomAlphabet, renderOptions } = this;
-		const { password, isGenerating } = state;
-		return (
-			<React.Fragment>
-				<Loading open={isGenerating} />
-				<CardWrapper>
-					<CardContent>
-						<Grid container spacing={8}>
-							<Grid item xs={12} style={{ width: 600 }}>
-								<Grid container direction="column" >
-									{renderOptions()}
-									{renderCustomAlphabet()}
-									{renderGenerateButton()}
-								</Grid>
+	return (
+		<React.Fragment>
+			<Loading open={isGenerating} />
+			<CardWrapper>
+				<CardContent>
+					<Grid container spacing={8}>
+						<Grid item xs={12} style={{ width: 600 }}>
+							<Grid container direction="column" >
+								{renderOptions()}
+								{renderCustomAlphabet()}
+								{renderGenerateButton()}
 							</Grid>
 						</Grid>
-					</CardContent>
-					<CardActions style={{ backgroundColor: colors.primaryColor }}>
-						<PasswordField label="Password" value={password} />
-					</CardActions>
-				</CardWrapper>
-			</React.Fragment>
-		);
-	}
+					</Grid>
+				</CardContent>
+				<CardActions style={{ backgroundColor: colors.primaryColor }}>
+					<PasswordField label="Password" value={password} />
+				</CardActions>
+			</CardWrapper>
+		</React.Fragment>
+	);
 };
 
 export default Random;
-//style={{ backgroundColor: defaults.primaryColor }}
 /*
 <MetaTags>
 					<title>Getpass | Strong Password Generator</title>

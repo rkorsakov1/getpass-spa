@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 //import {Helmet} from "react-helmet";
 
@@ -10,261 +10,249 @@ import jdenticon from 'jdenticon';
 import { IGenerate } from 'auxiliary/generate';
 import colors from 'theme/colors';
 
-class Generate extends React.Component {
-    state = {
-        valid: false,
-        buttonText: 'Get Pass!',
+interface IValid {
+	message: string,
+	isValid: boolean
+}
 
-        login: '',
-        service: '',
-        secret: '',
-        counter: 0,
+const Generate: React.FC = (): JSX.Element => {
+	const [valid, setValid] = React.useState<IValid>({
+		message: '',
+		isValid: false
+	});
 
-        showSettings: false,
+	const [showSettings, setShowSettings] = React.useState<boolean>(false);
+	const [isGenerating, setIsGenerating] = React.useState<boolean>(false);
+	const [password, setPassword] = React.useState<string>('');
 
-        costFactor: 12,
-        blockSizeFactor: 4,
+	const [state, setState] = React.useState<IGenerate>({
+		login: '',
+		service: '',
+		secret: '',
+		counter: 0,
 
-        length: 18,
-        lower: true,
-        upper: true,
-        number: true,
-        special: true,
+		costFactor: 12,
+		blockSizeFactor: 4,
 
-        password: '',
+		length: 18,
+		lower: true,
+		upper: true,
+		number: true,
+		special: true,
+	});
 
-        isGenerating: false,
-    }
-    componentDidMount() {
-        this.validate({ ...this.state });
-    }
-    onChange = (propName: string, value: any) => {
-        this.setState({ [propName]: value });
-        this.validate({ ...this.state, [propName]: value });
-    }
-    updateScrypt = (costFactor: number, blockSizeFactor: number) => {
-        this.setState({ costFactor, blockSizeFactor });
-    }
-    validate = (newState: IGenerate) => {
-        const { login, service, secret, number, lower, upper, special } = newState;
+	useEffect(() => {
+		validate(state);
+	}, []);
 
-        if (login.length === 0) {
-            this.setState({ valid: false, buttonText: 'Please, enter your login' });
-        }
-        else if (service.length === 0) {
-            this.setState({ valid: false, buttonText: 'Please, enter website' });
-        }
-        else if (secret.length === 0) {
-            this.setState({ valid: false, buttonText: 'Please, enter secret keyword' });
-        }
-        else if (!(number || lower || upper || special)) {
-            this.setState({ valid: false, buttonText: 'Alphabet cannot be empty!' });
-        }
-        else {
-            this.setState({ valid: true, buttonText: 'Get Pass!' });
-        }
-    }
+	const onChange = (propName: string, value: any) => {
+		const newState = { ...state, [propName]: value };
+		setState(newState);
+		validate(newState);
+	}
+	const resetScrypt = (costFactor: number, blockSizeFactor: number) => {
+		setState({ ...state, costFactor, blockSizeFactor });
+	}
 
-    generatePassword = async (notify: (message: string) => void) => {
-        this.setState({ isGenerating: true });
-        setTimeout(async () => {
-            try {
-                const pass = await generateImplementation(this.state);
+	const validate = (newState: IGenerate) => {
+		const { login, service, secret, number, lower, upper, special } = newState;
 
-                notify('Password is generated and copied to clipboard');
-                this.setState({ password: pass, isGenerating: false });
 
-                setTimeout(() => {
-                    copyToClipboard(pass);
-                }, 256);
-            }
-            catch{
-                notify('Incompatible core params!');
-                this.setState({ isGenerating: false });
-            }
-        }, 16);
-    }
+		if (login.length === 0) {
+			setValid({ isValid: false, message: 'Please, enter your login' });
+		}
+		else if (service.length === 0) {
+			setValid({ isValid: false, message: 'Please, enter website' });
+		}
+		else if (secret.length === 0) {
+			setValid({ isValid: false, message: 'Please, enter secret keyword' });
+		}
+		else if (!(number || lower || upper || special)) {
+			setValid({ isValid: false, message: 'Alphabet cannot be empty!' });
+		}
+		else {
+			setValid({ isValid: true, message: 'Get Pass!' });
+		}
+	}
 
-    renderInputFields = () => {
-        const { onChange, state } = this;
-        const { login,
-            service, } = state;
-        return (
-            <React.Fragment>
-                <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
-                <InputField label='Login' value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
-                <Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
-                <InputField label='Website' value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
-            </React.Fragment>
-        )
-    }
+	const generatePassword = async (notify: (message: string) => void) => {
+		setIsGenerating(true);
+		setTimeout(async () => {
+			try {
+				const pass = await generateImplementation(state);
 
-    renderSecretField = () => {
-        const { onChange, state } = this;
-        const { secret } = state;
-        return (
-            <Grid container>
-                <Grid item xs>
-                    <InputField label='Secret keyword' value={secret} onChange={(value: string) => onChange('secret', value)} />
-                </Grid>
-                <Grid item>
-                    <div dangerouslySetInnerHTML={{ __html: jdenticon.toSvg(secret, 60) }}
-                        style={{ marginLeft: '8px', }}></div>
-                </Grid>
-            </Grid>
-        );
-    }
+				notify('Password is generated and copied to clipboard');
+				setPassword(pass);
 
-    renderAdvancedPanel = () => {
-        const { onChange, state } = this;
-        const {
-            counter,
-            lower,
-            upper,
-            number,
-            special,
-            length, } = state;
-        return (
-            <div>
-                <ExpansionPanel
-                    style={{ marginBottom: '8px', marginTop: '8px', }}>
-                    <ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
-                        <Settings color="secondary" />
-                        <Typography variant="body1" style={{ paddingLeft: '12px' }}>Advanced settings</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails style={{ paddingRight: 2 }}>
-                        <Grid
-                            container
-                            direction="column"
-                            justify="flex-start"
-                            alignItems="flex-start"
-                        >
-                            <SwitchField label='Numbers (0-9)' value={number} onChange={(value: boolean) => onChange('number', value)} />
-                            <SwitchField label='Lower case (a-z)' value={lower} onChange={(value: boolean) => onChange('lower', value)} />
-                            <SwitchField label='Upper case (A-Z)' value={upper} onChange={(value: boolean) => onChange('upper', value)} />
-                            <SwitchField label='Special (!#$%&()*+,-.:;<=>?@[]^_{})' value={special} onChange={(value: boolean) => onChange('special', value)} />
-                            <NumericInputField label='Password length' min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
-                            <NumericInputField label='Counter' min={0} max={4096} value={counter} onChange={(value: number) => onChange('counter', value)} />
-                        </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            </div>
-        );
-    }
+				setTimeout(() => {
+					copyToClipboard(pass);
+				}, 256);
+			}
+			catch{
+				notify('Incompatible core params!');
+			}
+			finally {
+				setIsGenerating(false);
+			}
+		}, 16);
+	}
 
-    renderCorePanel = () => {
-        const { onChange, state, updateScrypt } = this;
-        const {
-            blockSizeFactor,
-            costFactor, } = state;
+	const renderInputFields = () => {
+		const { login, service } = state;
+		return (
+			<React.Fragment>
+				<Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
+				<InputField label='Login' value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
+				<Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
+				<InputField label='Website' value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
+			</React.Fragment>
+		)
+	}
 
-        const costHumanReadable = 1 << costFactor;
-        const blockSizeHumanReadable = Math.round(1000 * costHumanReadable * blockSizeFactor * 128 / 1024 / 1024) / 1000;
-        return (
-            <div>
-                <ExpansionPanel>
-                    <ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
-                        <Security color="secondary" />
-                        <Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails style={{ paddingRight: 2 }}>
-                        <Grid
-                            container
-                            direction="column"
-                            justify="flex-start"
-                            alignItems="flex-start"
-                        >
-                            <Typography variant="caption">Warning: You must be confident in the changes you make. This directly affects the time of generating passwords, as well as the result itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.</Typography>
-                            <NumericInputField label={`Cost factor: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
-                            <NumericInputField label={`Block size factor: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
-                            <div>
-                                <Button variant="contained" onClick={() => updateScrypt(12, 4)}>default</Button>
-                                <Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => updateScrypt(16, 8)}>tough</Button>
-                            </div>
-                        </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            </div>
-        );
-    }
+	const renderSecretField = () => {
+		const { secret } = state;
+		return (
+			<Grid container>
+				<Grid item xs>
+					<InputField label='Secret keyword' value={secret} onChange={(value: string) => onChange('secret', value)} />
+				</Grid>
+				<Grid item>
+					<div dangerouslySetInnerHTML={{ __html: jdenticon.toSvg(secret, 60) }}
+						style={{ marginLeft: '8px', }}></div>
+				</Grid>
+			</Grid>
+		);
+	}
 
-    renderGenerateButton = () => {
-        const { state, generatePassword } = this;
-        const {
-            valid,
-            buttonText,
-            showSettings
-        } = state;
+	const renderAdvancedPanel = () => {
+		const { counter, lower, upper, number, special, length, } = state;
+		return (
+			<div>
+				<ExpansionPanel
+					style={{ marginBottom: '8px', marginTop: '8px', }}>
+					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
+						<Settings color="secondary" />
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Advanced settings</Typography>
+					</ExpansionPanelSummary>
+					<ExpansionPanelDetails style={{ paddingRight: 2 }}>
+						<Grid
+							container
+							direction="column"
+							justify="flex-start"
+							alignItems="flex-start"
+						>
+							<SwitchField label='Numbers (0-9)' value={number} onChange={(value: boolean) => onChange('number', value)} />
+							<SwitchField label='Lower case (a-z)' value={lower} onChange={(value: boolean) => onChange('lower', value)} />
+							<SwitchField label='Upper case (A-Z)' value={upper} onChange={(value: boolean) => onChange('upper', value)} />
+							<SwitchField label='Special (!#$%&()*+,-.:;<=>?@[]^_{})' value={special} onChange={(value: boolean) => onChange('special', value)} />
+							<NumericInputField label='Password length' min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
+							<NumericInputField label='Counter' min={0} max={4096} value={counter} onChange={(value: number) => onChange('counter', value)} />
+						</Grid>
+					</ExpansionPanelDetails>
+				</ExpansionPanel>
+			</div>
+		);
+	}
 
-        return (
-            <Grid container spacing={8}>
-                <Grid item xs
-                    style={{ paddingRight: '0px', }}>
-                    <NotificationContext.Consumer>
-                        {({ updateMessage }) =>
-                            <Button
-                                style={{ height: '50px' }}
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                disabled={!valid} onClick={() => generatePassword(updateMessage)}>
-                                {buttonText}
-                            </Button>
-                        }
-                    </NotificationContext.Consumer>
-                </Grid>
-                <Grid item>
-                    <IconButton
-                        aria-label="show advanced settings"
-                        style={{ marginRight: '8px', }}
-                        color="secondary"
-                        onClick={() => this.setState({ showSettings: !showSettings })}
-                    >
-                        <Settings />
-                    </IconButton>
-                </Grid>
-            </Grid>
-        );
-    }
+	const renderCorePanel = () => {
+		const { blockSizeFactor, costFactor, } = state;
 
-    render() {
-        const { state, renderInputFields, renderSecretField, renderAdvancedPanel, renderCorePanel, renderGenerateButton } = this;
-        const { password, showSettings, isGenerating } = state;
+		const costHumanReadable = 1 << costFactor;
+		const blockSizeHumanReadable = Math.round(1000 * costHumanReadable * blockSizeFactor * 128 / 1024 / 1024) / 1000;
+		return (
+			<div>
+				<ExpansionPanel>
+					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
+						<Security color="secondary" />
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
+					</ExpansionPanelSummary>
+					<ExpansionPanelDetails style={{ paddingRight: 2 }}>
+						<Grid
+							container
+							direction="column"
+							justify="flex-start"
+							alignItems="flex-start"
+						>
+							<Typography variant="caption">Warning: You must be confident in the changes you make. This directly affects the time of generating passwords, as well as the result itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.</Typography>
+							<NumericInputField label={`Cost factor: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
+							<NumericInputField label={`Block size factor: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
+							<div>
+								<Button variant="contained" onClick={() => resetScrypt(12, 4)}>default</Button>
+								<Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => resetScrypt(16, 8)}>tough</Button>
+							</div>
+						</Grid>
+					</ExpansionPanelDetails>
+				</ExpansionPanel>
+			</div>
+		);
+	}
 
-        return (
-            <React.Fragment>
-                <Loading open={isGenerating} />
-                <CardWrapper>
-                    <CardContent>
-                        <Grid container spacing={8}>
-                            <Grid item xs={12} style={{ width: 600 }}>
-                                <Grid container direction="column" >
-                                    {renderInputFields()}
-                                    {renderSecretField()}
-                                    {renderGenerateButton()}
-                                    {showSettings ?
-                                        <>
-                                            {renderAdvancedPanel()}
-                                            {renderCorePanel()}
-                                        </> : <></>}
+	const renderGenerateButton = () => {
+		const { message, isValid } = valid;
 
-                                </Grid>
-                            </Grid>
-                        </Grid>
+		return (
+			<Grid container spacing={8}>
+				<Grid item xs
+					style={{ paddingRight: '0px', }}>
+					<NotificationContext.Consumer>
+						{({ updateMessage }) =>
+							<Button
+								style={{ height: '50px' }}
+								fullWidth
+								variant="contained"
+								color="primary"
+								disabled={!isValid} onClick={() => generatePassword(updateMessage)}>
+								{message}
+							</Button>
+						}
+					</NotificationContext.Consumer>
+				</Grid>
+				<Grid item>
+					<IconButton
+						aria-label="show advanced settings"
+						style={{ marginRight: '8px', }}
+						color="secondary"
+						onClick={() => setShowSettings(!showSettings)}
+					>
+						<Settings />
+					</IconButton>
+				</Grid>
+			</Grid>
+		);
+	}
 
-                    </CardContent>
-                    <CardActions style={{ backgroundColor: colors.primaryColor }}>
-                        <PasswordField label="Password" value={password} />
-                    </CardActions>
-                </CardWrapper>
-            </React.Fragment>
-        );
-    }
+	return (
+		<React.Fragment>
+			<Loading open={isGenerating} />
+			<CardWrapper>
+				<CardContent>
+					<Grid container spacing={8}>
+						<Grid item xs={12} style={{ width: 600 }}>
+							<Grid container direction="column" >
+								{renderInputFields()}
+								{renderSecretField()}
+								{renderGenerateButton()}
+								{showSettings ?
+									<>
+										{renderAdvancedPanel()}
+										{renderCorePanel()}
+									</> : <></>}
+
+							</Grid>
+						</Grid>
+					</Grid>
+
+				</CardContent>
+				<CardActions style={{ backgroundColor: colors.primaryColor }}>
+					<PasswordField label="Password" value={password} />
+				</CardActions>
+			</CardWrapper>
+		</React.Fragment>
+	);
 };
 
 export default Generate;
 
-//style={{ backgroundColor: defaults.primaryColor }}
 /*
 
                 <MetaTags>

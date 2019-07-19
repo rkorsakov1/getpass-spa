@@ -12,7 +12,7 @@ interface IQA {
 }
 
 
-const QA = () => {
+const QA: React.FC = (): JSX.Element => {
     const { t } = useTranslation();
 	const m = (path: string): string => t(path, { joinArrays: '  \n', });
 
