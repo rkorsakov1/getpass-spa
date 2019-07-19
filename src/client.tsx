@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'i18n';
 
-import App from './App';
+import App from './app';
 
 import { theme } from 'theme';
 import { ThemeProvider } from '@material-ui/styles';

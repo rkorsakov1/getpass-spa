@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import express from 'express';
 
-import App from 'App';
+import App from './app';
 import Backend from 'i18next-node-fs-backend';
 import { I18nextProvider } from 'react-i18next';
 import { i18n, getLanguages, fallbackLng } from 'i18n';
