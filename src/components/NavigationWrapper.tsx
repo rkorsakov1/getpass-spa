@@ -21,10 +21,10 @@ const styles = (theme: Theme) => createStyles({
 	},
 	content: {
 		[theme.breakpoints.down('xs')]: {
-			marginTop: '40px',
+			marginTop: '60px',
 		},
 		flexGrow: 1,
-		padding: 60,
+		padding: 10,
 	},
 });
 
