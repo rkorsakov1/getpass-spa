@@ -170,7 +170,7 @@ const Generate: React.FC = (): JSX.Element => {
 						<Security color="secondary" />
 						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
 					</ExpansionPanelSummary>
-					<ExpansionPanelDetails style={{ paddingRight: 2 }}>
+					<ExpansionPanelDetails>
 						<Grid
 							container
 							direction="column"
@@ -195,9 +195,9 @@ const Generate: React.FC = (): JSX.Element => {
 		const { message, isValid } = valid;
 
 		return (
-			<Grid container spacing={8}>
+			<Grid container>
 				<Grid item xs
-					style={{ paddingRight: '0px', }}>
+					style={{ paddingRight: '12px', }}>
 					<NotificationContext.Consumer>
 						{({ updateMessage }) =>
 							<Button
