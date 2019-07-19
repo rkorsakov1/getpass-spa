@@ -66,7 +66,7 @@ const Downloads: React.FC = (): JSX.Element => {
 			enabled: false,
 			icon: <DesktopMac />,
 			name: 'Mac desktop',
-			description: t('downloads.mac'),
+			description: m('downloads.macintosh'),
 			hyperlink: `${baseURL}/getpass-desktop`
 		},
 	];

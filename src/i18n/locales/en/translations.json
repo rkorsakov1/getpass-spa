@@ -1,4 +1,11 @@
 {
+	"notFound": {
+		"message": "Page is not found"
+	},
+	"general": {
+		"caseSensitive": "case sensitive",
+		"password": "password"
+	},
 	"downloads": {
 		"android": [
 			"Prebuilt *.apk files available.",
@@ -24,44 +31,66 @@
 			"Under development.",
 			"Late autumn."
 		],
-		"mac": [
+		"macintosh": [
 			"Under development.",
 			"Late summer."
 		]
-	},
-	"home": {
-		"title": "yet another SSR boilerplate",
-		"description": [
-			"*backed* with:",
-			"**0**. React",
-			"**1**. I18next",
-			"**2**. Markdown",
-			"**3**. Typescript",
-			"**4**. SSR (Razzle)",
-			"**5**. React helmet (hreflangs)",
-			"**6**. Material UI + notifications",
-			"**7**. PWA (serviceworker bundled and notifies users)",
-			"**8**. React router v4 (smooth transitions, 404, language routing and switching)",
-			"",
-			"This is a small project that is aimed to simplify React SSR development (for me)"
-		]
-	},
-	"about": {
-		"author": "[stellarbear](https://github.com/stellarbear)",
-		"textFieldLabel": "Enter custom text",
-		"copyButton": "Copy text"
 	},
 	"navigation": {
 		"qa": "faq",
 		"generate": "generator",
 		"random": "random",
 		"download": "download",
-		"about": "about"
+		"about": "about",
+		"title": "getpass!"
 	},
-	"notFound": {
-		"message": "Page is not found"
+	"random": {
+		"mainButton": {
+			"validInput": "Generate password",
+			"wrongAlphabet": "Alphabet cannot be empty!"
+		},
+		"settings":{
+			"number": "Numbers (0-9)",
+			"upper": "Lower case (a-z)",
+			"lower": "Upper case (A-Z)",
+			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
+			"length": "Password length"
+		},
+		"alphabet": {
+			"label": "alphabet",
+			"custom": "Custom alphabet"
+		}
+	},
+	"generate": {
+		"input": {
+			"login": "Login",
+			"website": "Website",
+			"secret": "Secret keyword"
+		},
+		"settings":{
+			"number": "Numbers (0-9)",
+			"upper": "Lower case (a-z)",
+			"lower": "Upper case (A-Z)",
+			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
+			"length": "Password length",
+			"counter": "Counter",
+			"scrypt": {
+				"warning": "**Warning**: You must be confident in the changes you make. This directly affects the **time** of generating passwords, as well as the **result** itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.",
+				"cost": "Cost factor",
+				"blockSize": "Block size factor"
+			}
+		},
+		"mainButton": {
+			"validInput": "Get Pass!",
+			"loginMissing": "Please, enter your login",
+			"websiteMissing": "Please, enter website",
+			"secretMissing": "Please, enter secret keyword",
+			"wrongAlphabet": "Alphabet cannot be empty!"
+		}
 	},
 	"notify": {
+		"passwordIsGenerated": "Password is generated and copied to clipboard",
+		"incompatibleParams": "Incompatible core params",
 		"pwa": {
 			"ready": "Content is cached for offline use [PWA ready].",
 			"update": "New content is available, please reload your web browser"

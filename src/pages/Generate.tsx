@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 //import {Helmet} from "react-helmet";
 
-import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper } from 'components';
+import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown } from 'components';
 import { copyToClipboard, generateImplementation } from 'auxiliary';
 import { ExpandMore, Settings, Security } from "@material-ui/icons";
 
 import jdenticon from 'jdenticon';
 import { IGenerate } from 'auxiliary/generate';
 import colors from 'theme/colors';
+import { useTranslation } from 'react-i18next';
 
 interface IValid {
 	message: string,
@@ -16,8 +17,11 @@ interface IValid {
 }
 
 const Generate: React.FC = (): JSX.Element => {
+	const { t } = useTranslation();
+	const m = (path: string): string => t(path, { joinArrays: '  \n', });
+
 	const [valid, setValid] = React.useState<IValid>({
-		message: '',
+		message: t('generate.mainButton.loginMissing'),
 		isValid: false
 	});
 
@@ -59,19 +63,19 @@ const Generate: React.FC = (): JSX.Element => {
 
 
 		if (login.length === 0) {
-			setValid({ isValid: false, message: 'Please, enter your login' });
+			setValid({ isValid: false, message: t('generate.mainButton.loginMissing') });
 		}
 		else if (service.length === 0) {
-			setValid({ isValid: false, message: 'Please, enter website' });
+			setValid({ isValid: false, message: t('generate.mainButton.websiteMissing') });
 		}
 		else if (secret.length === 0) {
-			setValid({ isValid: false, message: 'Please, enter secret keyword' });
+			setValid({ isValid: false, message: t('generate.mainButton.secretMissing') });
 		}
 		else if (!(number || lower || upper || special)) {
-			setValid({ isValid: false, message: 'Alphabet cannot be empty!' });
+			setValid({ isValid: false, message: t('generate.mainButton.wrongAlphabet') });
 		}
 		else {
-			setValid({ isValid: true, message: 'Get Pass!' });
+			setValid({ isValid: true, message: t('generate.mainButton.validInput') });
 		}
 	}
 
@@ -81,7 +85,7 @@ const Generate: React.FC = (): JSX.Element => {
 			try {
 				const pass = await generateImplementation(state);
 
-				notify('Password is generated and copied to clipboard');
+				notify(t('notify.passwordIsGenerated'));
 				setPassword(pass);
 
 				setTimeout(() => {
@@ -89,7 +93,7 @@ const Generate: React.FC = (): JSX.Element => {
 				}, 256);
 			}
 			catch{
-				notify('Incompatible core params!');
+				notify(t('notify.incompatibleParams'));
 			}
 			finally {
 				setIsGenerating(false);
@@ -101,10 +105,10 @@ const Generate: React.FC = (): JSX.Element => {
 		const { login, service } = state;
 		return (
 			<React.Fragment>
-				<Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
-				<InputField label='Login' value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
-				<Typography variant="caption" style={{ opacity: 0.34 }}>case sensitive</Typography>
-				<InputField label='Website' value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
+				<Typography variant="caption" style={{ opacity: 0.34 }}>{t('general.caseSensitive')}</Typography>
+				<InputField label={t('generate.input.login')} value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
+				<Typography variant="caption" style={{ opacity: 0.34 }}>{t('general.caseSensitive')}</Typography>
+				<InputField label={t('generate.input.website')} value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
 			</React.Fragment>
 		)
 	}
@@ -114,7 +118,7 @@ const Generate: React.FC = (): JSX.Element => {
 		return (
 			<Grid container>
 				<Grid item xs>
-					<InputField label='Secret keyword' value={secret} onChange={(value: string) => onChange('secret', value)} />
+					<InputField label={t('generate.input.secret')} value={secret} onChange={(value: string) => onChange('secret', value)} />
 				</Grid>
 				<Grid item>
 					<div dangerouslySetInnerHTML={{ __html: jdenticon.toSvg(secret, 60) }}
@@ -141,12 +145,12 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<SwitchField label='Numbers (0-9)' value={number} onChange={(value: boolean) => onChange('number', value)} />
-							<SwitchField label='Lower case (a-z)' value={lower} onChange={(value: boolean) => onChange('lower', value)} />
-							<SwitchField label='Upper case (A-Z)' value={upper} onChange={(value: boolean) => onChange('upper', value)} />
-							<SwitchField label='Special (!#$%&()*+,-.:;<=>?@[]^_{})' value={special} onChange={(value: boolean) => onChange('special', value)} />
-							<NumericInputField label='Password length' min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
-							<NumericInputField label='Counter' min={0} max={4096} value={counter} onChange={(value: number) => onChange('counter', value)} />
+							<SwitchField label={t('generate.settings.number')} value={number} onChange={(value: boolean) => onChange('number', value)} />
+							<SwitchField label={t('generate.settings.lower')} value={lower} onChange={(value: boolean) => onChange('lower', value)} />
+							<SwitchField label={t('generate.settings.upper')} value={upper} onChange={(value: boolean) => onChange('upper', value)} />
+							<SwitchField label={t('generate.settings.special')} value={special} onChange={(value: boolean) => onChange('special', value)} />
+							<NumericInputField label={t('generate.settings.length')} min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
+							<NumericInputField label={t('generate.settings.counter')} min={0} max={4096} value={counter} onChange={(value: number) => onChange('counter', value)} />
 						</Grid>
 					</ExpansionPanelDetails>
 				</ExpansionPanel>
@@ -173,9 +177,9 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<Typography variant="caption">Warning: You must be confident in the changes you make. This directly affects the time of generating passwords, as well as the result itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.</Typography>
-							<NumericInputField label={`Cost factor: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
-							<NumericInputField label={`Block size factor: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
+							<MarkDown source={m('generate.settings.scrypt.warning')} />
+							<NumericInputField label={`${t('generate.settings.scrypt.cost')}: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
+							<NumericInputField label={`${t('generate.settings.scrypt.blockSize')}: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
 							<div>
 								<Button variant="contained" onClick={() => resetScrypt(12, 4)}>default</Button>
 								<Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => resetScrypt(16, 8)}>tough</Button>
@@ -244,7 +248,7 @@ const Generate: React.FC = (): JSX.Element => {
 
 				</CardContent>
 				<CardActions style={{ backgroundColor: colors.primaryColor }}>
-					<PasswordField label="Password" value={password} />
+					<PasswordField label={t('general.password')} value={password} />
 				</CardActions>
 			</CardWrapper>
 		</React.Fragment>

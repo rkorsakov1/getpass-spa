@@ -1,5 +1,6 @@
 import Icon from './Icon';
 import Loading from './Loading';
+import MarkDown from './MarkDown';
 import InputField from './InputField';
 import SwitchField from './SwitchField';
 import PasswordField from './PasswordField';
@@ -12,4 +13,4 @@ import HeadWrapper from './HeadWrapper';
 import NavigationWrapper from './NavigationWrapper';
 import { NotifyWrapper, NotificationContext } from './NotifyWrapper';
 
-export { HeadWrapper, NavigationWrapper, Icon, Loading, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, SwitchField };
+export { HeadWrapper, MarkDown, NavigationWrapper, Icon, Loading, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, SwitchField };

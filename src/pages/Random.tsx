@@ -7,6 +7,7 @@ import { copyToClipboard, randomImplementation } from 'auxiliary';
 import { alphabet } from 'auxiliary/alphabet';
 import colors from 'theme/colors';
 import { IRandom } from 'auxiliary/random';
+import { useTranslation } from 'react-i18next';
 
 interface IValid {
 	message: string,
@@ -14,8 +15,10 @@ interface IValid {
 }
 
 const Random: React.FC = (): JSX.Element => {
+	const { t } = useTranslation();
+
 	const [valid, setValid] = React.useState<IValid>({
-		message: 'Generate password',
+		message: t('random.mainButton.validInput'),
 		isValid: true
 	});
 	const [isGenerating, setIsGenerating] = React.useState<boolean>(false);
@@ -41,9 +44,9 @@ const Random: React.FC = (): JSX.Element => {
 		const customAlphabetValue = customAlphabetFlag ? alphabet(state) : Array.from(new Set(state.customAlphabetValue.split(''))).join('');
 
 		if (customAlphabetValue.length > 0) {
-			setValid({ isValid: true, message: 'Get Pass!' });
+			setValid({ isValid: true, message: t('random.mainButton.validInput') });
 		} else {
-			setValid({ isValid: false, message: 'Alphabet cannot be empty!' });
+			setValid({ isValid: false, message: t('random.mainButton.wrongAlphabet') });
 		}
 
 		const newState = { ...state, customAlphabetValue, [propName]: value };
@@ -55,7 +58,7 @@ const Random: React.FC = (): JSX.Element => {
 			try {
 				const pass = await randomImplementation(state);
 
-				notify('Password is generated and copied to clipboard');
+				notify(t('notify.passwordIsGenerated'));
 				setPassword(pass);
 
 				setTimeout(() => {
@@ -63,7 +66,7 @@ const Random: React.FC = (): JSX.Element => {
 				}, 256);
 			}
 			catch{
-				notify('Incompatible core params!');
+				notify(t('notify.incompatibleParams'));
 			}
 			finally {
 				setIsGenerating(false);
@@ -74,13 +77,13 @@ const Random: React.FC = (): JSX.Element => {
 	const renderOptions = () => {
 		const { length, lower, upper, number, special, } = state;
 		return (
-			<>
-				<SwitchField label='Numbers (0-9)' value={number} onChange={(value: boolean) => onChange('number', value)} />
-				<SwitchField label='Lower case (a-z)' value={lower} onChange={(value: boolean) => onChange('lower', value)} />
-				<SwitchField label='Upper case (A-Z)' value={upper} onChange={(value: boolean) => onChange('upper', value)} />
-				<SwitchField label='Special (!#$%&()*+,-.:;<=>?@[]^_{})' value={special} onChange={(value: boolean) => onChange('special', value)} />
-				<NumericInputField label='Password length' min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
-			</>
+			<React.Fragment>
+				<SwitchField label={t('random.settings.number')} value={number} onChange={(value: boolean) => onChange('number', value)} />
+				<SwitchField label={t('random.settings.lower')} value={lower} onChange={(value: boolean) => onChange('lower', value)} />
+				<SwitchField label={t('random.settings.upper')} value={upper} onChange={(value: boolean) => onChange('upper', value)} />
+				<SwitchField label={t('random.settings.special')} value={special} onChange={(value: boolean) => onChange('special', value)} />
+				<NumericInputField label={t('random.settings.length')} min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
+			</React.Fragment>
 		);
 	}
 
@@ -89,8 +92,8 @@ const Random: React.FC = (): JSX.Element => {
 
 		return (
 			<>
-				<SwitchField label='Custom alphabet' value={customAlphabetFlag} onChange={(value: boolean) => onChange('customAlphabetFlag', value)} />
-				{customAlphabetFlag && <InputField label='alphabet' adornment={false} disabled={!customAlphabetFlag} value={customAlphabetValue} onChange={(value: string) => onChange('customAlphabetValue', value)} />}
+				<SwitchField label={t('random.alphabet.custom')} value={customAlphabetFlag} onChange={(value: boolean) => onChange('customAlphabetFlag', value)} />
+				{customAlphabetFlag && <InputField label={t('random.alphabet.label')} adornment={false} disabled={!customAlphabetFlag} value={customAlphabetValue} onChange={(value: string) => onChange('customAlphabetValue', value)} />}
 			</>
 		);
 	}
@@ -124,7 +127,7 @@ const Random: React.FC = (): JSX.Element => {
 					</Grid>
 				</CardContent>
 				<CardActions style={{ backgroundColor: colors.primaryColor }}>
-					<PasswordField label="Password" value={password} />
+					<PasswordField label={t('general.password')} value={password} />
 				</CardActions>
 			</CardWrapper>
 		</React.Fragment>
