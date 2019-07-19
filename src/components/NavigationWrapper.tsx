@@ -93,7 +93,7 @@ const NavigationWrapper: React.FC<NavigationProps> =
 
 		);
 
-		const LanguageButton = () => <LanguagePicker />
+		const LanguageButton = () => <LanguagePicker inverted={true} />
 
 		const MenuButton = () => <IconButton
 			color="inherit"
