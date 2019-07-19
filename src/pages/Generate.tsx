@@ -1,18 +1,16 @@
 import React from 'react';
-import MetaTags from 'react-meta-tags';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 //import {Helmet} from "react-helmet";
 
-import { InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper } from 'components';
-import { copyToClipboard, generatePasswordImplementation, GeneratorState } from 'auxiliary';
+import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper } from 'components';
+import { copyToClipboard, generateImplementation } from 'auxiliary';
 import { ExpandMore, Settings, Security } from "@material-ui/icons";
 
 import jdenticon from 'jdenticon';
-import Loading from 'pages/Loading';
-import { defaults } from "auxiliary";
-import { HrefLang } from 'components/HrefLang';
+import { IGenerate } from 'auxiliary/generate';
+import colors from 'theme/colors';
 
-class Generator extends React.Component {
+class Generate extends React.Component {
     state = {
         valid: false,
         buttonText: 'Get Pass!',
@@ -47,7 +45,7 @@ class Generator extends React.Component {
     updateScrypt = (costFactor: number, blockSizeFactor: number) => {
         this.setState({ costFactor, blockSizeFactor });
     }
-    validate = (newState: GeneratorState) => {
+    validate = (newState: IGenerate) => {
         const { login, service, secret, number, lower, upper, special } = newState;
 
         if (login.length === 0) {
@@ -71,7 +69,7 @@ class Generator extends React.Component {
         this.setState({ isGenerating: true });
         setTimeout(async () => {
             try {
-                const pass = await generatePasswordImplementation(this.state);
+                const pass = await generateImplementation(this.state);
 
                 notify('Password is generated and copied to clipboard');
                 this.setState({ password: pass, isGenerating: false });
@@ -199,7 +197,7 @@ class Generator extends React.Component {
         } = state;
 
         return (
-            <Grid container spacing={24}>
+            <Grid container spacing={8}>
                 <Grid item xs
                     style={{ paddingRight: '0px', }}>
                     <NotificationContext.Consumer>
@@ -235,15 +233,10 @@ class Generator extends React.Component {
 
         return (
             <React.Fragment>
-                <MetaTags>
-                    <title>Getpass | Strong Password Generator</title>
-                    <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
-                    <HrefLang />
-                </MetaTags>
                 <Loading open={isGenerating} />
                 <CardWrapper>
                     <CardContent>
-                        <Grid container spacing={24}>
+                        <Grid container spacing={8}>
                             <Grid item xs={12} style={{ width: 600 }}>
                                 <Grid container direction="column" >
                                     {renderInputFields()}
@@ -260,7 +253,7 @@ class Generator extends React.Component {
                         </Grid>
 
                     </CardContent>
-                    <CardActions style={{ backgroundColor: defaults.primaryColor }}>
+                    <CardActions style={{ backgroundColor: colors.primaryColor }}>
                         <PasswordField label="Password" value={password} />
                     </CardActions>
                 </CardWrapper>
@@ -269,4 +262,14 @@ class Generator extends React.Component {
     }
 };
 
-export default Generator;
+export default Generate;
+
+//style={{ backgroundColor: defaults.primaryColor }}
+/*
+
+                <MetaTags>
+                    <title>Getpass | Strong Password Generator</title>
+                    <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
+                    <HrefLang />
+                </MetaTags>
+*/

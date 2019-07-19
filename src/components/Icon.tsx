@@ -8,7 +8,7 @@ interface IconProps {
     onClick: () => void,
 }
 
-const Icon: React.FunctionComponent<IconProps> = ({ tooltip, children, onClick, enabled }) => (
+const Icon: React.FC<IconProps> = ({ tooltip, children, onClick, enabled }): JSX.Element => (
     <Tooltip TransitionComponent={Zoom} title={tooltip} style={{ fontSize: 40 }}>
         <div>
             <IconButton

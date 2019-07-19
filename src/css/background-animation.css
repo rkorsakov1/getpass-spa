@@ -1,0 +1,80 @@
+.mobile {
+	display: none;
+}
+
+.desktop {
+	display: display;
+}
+
+@media (max-width : 600px) {
+	.mobile {
+		display: block;
+	}
+
+	.desktop {
+		display: none;
+	}
+}
+
+.desktop .background {
+	position: relative;
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+}
+
+.mobile .background {
+	background: #5C6BC0;
+	position: relative;
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+}
+
+.mobile .background .wave {
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	background: #FAFAFA;
+	width: 256vw;
+	height: 256vw;
+	margin-left: -128vw;
+	margin-bottom: -30vh;
+	border-radius: 43%;
+	animation: humming 20s infinite linear;
+}
+
+.desktop .background .wave {
+	opacity: 0.4;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #5C6BC0;
+	width: 256vw;
+	height: 256vw;
+	margin-left: -128vw;
+	margin-top: 30vh;
+	border-radius: 43%;
+	animation: humming 30s infinite linear;
+}
+
+.desktop .background .wave._two {
+	animation: humming 46s infinite linear;
+	opacity: 1;
+	background: #283593;
+}
+
+.desktop .background .wave._three {
+	opacity: 0.9;
+	animation: humming 34s infinite linear;
+}
+
+@keyframes humming {
+	from {
+		transform: rotate(0deg);
+	}
+
+	from {
+		transform: rotate(360deg);
+	}
+}

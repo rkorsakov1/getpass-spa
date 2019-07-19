@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from "react";
-import { TextField, InputAdornment, IconButton, Grid, Tooltip, Zoom, CssBaseline, MuiThemeProvider } from "@material-ui/core";
+import { TextField, InputAdornment, IconButton, Grid, Tooltip, Zoom, CssBaseline } from "@material-ui/core";
+import { ThemeProvider } from '@material-ui/styles';
 import { FileCopy, Visibility, VisibilityOff } from "@material-ui/icons";
 import { copyToClipboard } from 'auxiliary';
-import { light, dark } from 'themes';
+import { light, dark } from 'theme';
 
 interface Props {
     value: string,
@@ -15,7 +16,7 @@ export default ({ value, label }: Props) => {
 
     return (
         <Grid container style={{ margin: 8 }}>
-            <MuiThemeProvider theme={dark}>
+            <ThemeProvider theme={dark}>
                 <Grid item xs>
                     <TextField
                         fullWidth
@@ -50,10 +51,10 @@ export default ({ value, label }: Props) => {
                         </IconButton>
                     </Tooltip>
                 </Grid>
-                <MuiThemeProvider theme={light}>
+                <ThemeProvider theme={light}>
                     <CssBaseline />
-                </MuiThemeProvider>
-            </MuiThemeProvider>
+                </ThemeProvider>
+            </ThemeProvider>
         </Grid >
     );
 }

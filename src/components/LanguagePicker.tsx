@@ -1,49 +1,42 @@
 import React from 'react';
-import { getLanguageMeta, locales, ILanguageMeta, fallback } from 'localization';
+import { getLanguageMeta, getLanguages } from 'i18n';
 import { MenuItem, Select, Input } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { changeLanguageSafe } from 'i18n';
+import { ILanguageMeta } from 'i18n/i18n';
 
 
-const LanguagePicker = () => {
-    const { i18n } = useTranslation();
+const LanguagePicker: React.FC = () => {
+	const { i18n } = useTranslation();
 
-    const onLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const oldLang = fallback(i18n.language);
-        i18n.changeLanguage(event.target.value);
-        const newLang = fallback(i18n.language);
+	const onLanguageChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>, child: React.ReactNode) =>
+		changeLanguageSafe(event.target.value as string);
 
-        //  I'm not proud of this way, but i need to somehow replace url without page reloading
-        //  #tricky
-        const newUrl = window.location.pathname.replace(`/${oldLang}/`, `/${newLang}/`);
-        window.history.replaceState("", "", newUrl);
-    }
+	const buildPicker = () => {
+		const languages: ILanguageMeta[] = getLanguages().map((language: string) => getLanguageMeta(language));
 
-    const buildPicker = () => {
-        const localeCodes: string[] = Object.values(locales);
-        const languages: ILanguageMeta[] = localeCodes.map((locale: string) => getLanguageMeta(locale));
+		const { language } = i18n;
 
-        const currentLanguage = fallback(i18n.language);
+		return (
+			<Select
+				value={language}
+				onChange={onLanguageChange}
+				input={<Input name="lang" />}
+			>
+				{languages.map(language =>
+					<MenuItem key={language.code} value={language.code}>
+						<img
+							alt={`language: ${language.code}`}
+							src={require(`assets/localization/${language.assetPath}`)}
+							height="18"
+							width="18" />
+					</MenuItem>
+				)}
+			</Select>
+		);
+	}
 
-        return (
-            <Select
-                value={currentLanguage}
-                onChange={onLanguageChange}
-                input={<Input name="lang" />}
-            >
-                {languages.map(language =>
-                    <MenuItem key={language.code} value={language.code}>
-                        <img
-                            alt={`language: ${language.code}`}
-                            src={require(`assets/localization/${language.assetPath}`)}
-                            height="18"
-                            width="18" />
-                    </MenuItem>
-                )}
-            </Select>
-        );
-    }
-
-    return buildPicker();
+	return buildPicker();
 }
 
 export default LanguagePicker;

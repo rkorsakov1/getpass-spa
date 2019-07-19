@@ -1,13 +1,15 @@
 import Icon from './Icon';
-import Download from './Download';
+import Loading from './Loading';
 import InputField from './InputField';
 import SwitchField from './SwitchField';
-import CardWrapper from './CardWrapper';
 import PasswordField from './PasswordField';
 import AnimatedSwitch from './AnimatedSwitch';
 import LanguagePicker from './LanguagePicker';
 import NumericInputField from './NumericInputField';
-import { RouterWrapper, navigation } from './RouterWrapper';
+
+import CardWrapper from './CardWrapper';
+import HeadWrapper from './HeadWrapper';
+import NavigationWrapper from './NavigationWrapper';
 import { NotifyWrapper, NotificationContext } from './NotifyWrapper';
 
-export { Icon, Download, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, RouterWrapper, SwitchField, navigation };
+export { HeadWrapper, NavigationWrapper, Icon, Loading, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, SwitchField };

@@ -14,7 +14,7 @@ const defaultProps: CardWrapperProps = {
     children: <React.Fragment />
 }
 
-const CardWrapper: React.FC<CardWrapperProps> = ({ width, children, asCard }) => {
+const CardWrapper: React.FC<CardWrapperProps> = ({ width, children, asCard }): JSX.Element => {
 
     return (
         <Grid
