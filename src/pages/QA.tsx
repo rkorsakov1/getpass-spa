@@ -1,10 +1,8 @@
 import React from 'react';
 import { Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Divider } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
-import { CardWrapper, MarkDown } from 'components';
+import { CardWrapper, MarkDown, TitleWrapper } from 'components';
 import { useTranslation } from 'react-i18next';
-
-import ReactMarkdown from 'react-markdown';
 
 interface IQA {
 	q: string,
@@ -43,11 +41,11 @@ const QA: React.FC = (): JSX.Element => {
 	};
 
 	return (
-		<React.Fragment>
+		<TitleWrapper componentName="qa">
 			<CardWrapper asCard={false}>
 				{QAdata.map((el: IQA, i: number) => QABlock(el, i))}
 			</CardWrapper>
-		</React.Fragment>
+		</TitleWrapper>
 	)
 }
 

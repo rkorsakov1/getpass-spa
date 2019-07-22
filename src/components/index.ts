@@ -10,7 +10,8 @@ import NumericInputField from './NumericInputField';
 
 import CardWrapper from './CardWrapper';
 import HeadWrapper from './HeadWrapper';
+import TitleWrapper from './TitleWrapper';
 import NavigationWrapper from './NavigationWrapper';
 import { NotifyWrapper, NotificationContext } from './NotifyWrapper';
 
-export { HeadWrapper, MarkDown, NavigationWrapper, Icon, Loading, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, SwitchField };
+export { TitleWrapper, HeadWrapper, MarkDown, NavigationWrapper, Icon, Loading, CardWrapper, AnimatedSwitch, InputField, NumericInputField, NotifyWrapper, NotificationContext, LanguagePicker, PasswordField, SwitchField };

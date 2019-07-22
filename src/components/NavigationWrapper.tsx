@@ -54,8 +54,8 @@ const NavigationWrapper: React.FC<NavigationProps> =
 		const renderNavigationList = (handleChange: boolean) => (
 			<React.Fragment>
 				<Button onClick={() => handleNavigation('/faq', handleChange)}>{t('navigation.qa')}</Button>
-				<Button onClick={() => handleNavigation('/generator', handleChange)}>{t('navigation.generate')}</Button>
-				<Button onClick={() => handleNavigation('/random', handleChange)}>{t('navigation.random')}</Button>
+				<Button onClick={() => handleNavigation('/pro', handleChange)}>{t('navigation.generate')}</Button>
+				<Button onClick={() => handleNavigation('/lite', handleChange)}>{t('navigation.random')}</Button>
 				<Button onClick={() => handleNavigation('/download', handleChange)}>{t('navigation.download')}</Button>
 				<Button disabled onClick={() => handleNavigation('/', handleChange)}>{t('navigation.about')}</Button>
 				{!handleChange ? <LanguagePicker /> : <></>}

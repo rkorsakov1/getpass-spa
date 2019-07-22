@@ -12,9 +12,9 @@ function App() {
 				<NavigationWrapper>
 					<AnimatedSwitch>
 						<Route path={`${baseURL}/`} exact component={Generate} />
-						<Route path={`${baseURL}/generator/`} exact component={Generate} />
+						<Route path={`${baseURL}/pro/`} exact component={Generate} />
 						<Route path={`${baseURL}/download/`} exact component={Downloads} />
-						<Route path={`${baseURL}/random/`} exact component={Random} />
+						<Route path={`${baseURL}/lite/`} exact component={Random} />
 						<Route path={`${baseURL}/faq/`} exact component={QA} />
 						<Redirect from='/' exact to={`/${fallbackLng}`} />
 						<Route component={NotFound} />

@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"license": "MIT",
 	"scripts": {
-		"start": "razzle start",
+		"start": "yarn clear:local && razzle start",
 		"build": "razzle build",
 		"test": "razzle test --env=jsdom",
 		"lint": "eslint \"./src/**/*.{ts,tsx}\"",

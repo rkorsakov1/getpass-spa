@@ -2,7 +2,7 @@ import React from 'react';
 import { CardContent, CardActions, Grid, Button } from '@material-ui/core';
 //import {Helmet} from "react-helmet";
 
-import { SwitchField, PasswordField, NumericInputField, InputField, NotificationContext, CardWrapper, Loading } from 'components';
+import { SwitchField, PasswordField, NumericInputField, InputField, NotificationContext, CardWrapper, Loading, TitleWrapper } from 'components';
 import { copyToClipboard, randomImplementation } from 'auxiliary';
 import { alphabet } from 'auxiliary/alphabet';
 import colors from 'theme/colors';
@@ -112,33 +112,28 @@ const Random: React.FC = (): JSX.Element => {
 	}
 
 	return (
-		<React.Fragment>
-			<Loading open={isGenerating} />
-			<CardWrapper>
-				<CardContent>
-					<Grid container spacing={8}>
-						<Grid item xs={12} style={{ width: 600 }}>
-							<Grid container direction="column" >
-								{renderOptions()}
-								{renderCustomAlphabet()}
-								{renderGenerateButton()}
+		<TitleWrapper componentName="random">
+			<React.Fragment>
+				<Loading open={isGenerating} />
+				<CardWrapper>
+					<CardContent>
+						<Grid container spacing={8}>
+							<Grid item xs={12} style={{ width: 600 }}>
+								<Grid container direction="column" >
+									{renderOptions()}
+									{renderCustomAlphabet()}
+									{renderGenerateButton()}
+								</Grid>
 							</Grid>
 						</Grid>
-					</Grid>
-				</CardContent>
-				<CardActions style={{ backgroundColor: colors.primaryColor }}>
-					<PasswordField label={t('general.password')} value={password} />
-				</CardActions>
-			</CardWrapper>
-		</React.Fragment>
+					</CardContent>
+					<CardActions style={{ backgroundColor: colors.primaryColor }}>
+						<PasswordField label={t('general.password')} value={password} />
+					</CardActions>
+				</CardWrapper>
+			</React.Fragment>
+		</TitleWrapper>
 	);
 };
 
 export default Random;
-/*
-<MetaTags>
-					<title>Getpass | Strong Password Generator</title>
-					<meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
-					<HrefLang />
-				</MetaTags>
-*/

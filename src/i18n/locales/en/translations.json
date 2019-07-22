@@ -38,8 +38,8 @@
 	},
 	"navigation": {
 		"qa": "faq",
-		"generate": "generator",
-		"random": "random",
+		"generate": "pro",
+		"random": "lite",
 		"download": "download",
 		"about": "about",
 		"title": "getpass!"
@@ -49,7 +49,7 @@
 			"validInput": "Generate password",
 			"wrongAlphabet": "Alphabet cannot be empty!"
 		},
-		"settings":{
+		"settings": {
 			"number": "Numbers (0-9)",
 			"upper": "Lower case (a-z)",
 			"lower": "Upper case (A-Z)",
@@ -67,7 +67,7 @@
 			"website": "Website",
 			"secret": "Secret keyword"
 		},
-		"settings":{
+		"settings": {
 			"number": "Numbers (0-9)",
 			"upper": "Lower case (a-z)",
 			"lower": "Upper case (A-Z)",
@@ -96,6 +96,22 @@
 			"update": "New content is available, please reload your web browser"
 		},
 		"copied": "Text is copied to clipboard"
+	},
+	"meta": {
+		"title": {
+			"random": "Getpass Lite - Random Password Generator",
+			"generate": "Getpass Pro -  Best Free Alternative To Password Managers",
+			"qa": "Getpass FAQ - What You Need To Know",
+			"downloads": "Getpass - Free Download",
+			"notFound": ""
+		},
+		"description": {
+			"random": "Getpass Lite is a flexible password generator. Up to 4096 symbols. Don't forget to check our Getpass Pro tool for a free alternative to cloud-based passwords managers.",
+			"generate": "Getpass Pro is a stateless cross-platform password manager (generator). This tool allows users to generate cryptographically strong passwords based on their input data.",
+			"qa": "Here you can find answers to most frequent questions about Getpass. Please, ask your question if you didn't find it in the list.",
+			"downloads": "Download Getpass for: Mobile (iOS, Android), Browser (Chrome, Safari), Desktop (Mac, Win, Linux). Satisfaction guaranteed.",
+			"notFound": ""
+		}
 	},
 	"qa": {
 		"q0": "What is Getpass?",

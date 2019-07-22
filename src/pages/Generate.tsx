@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 //import {Helmet} from "react-helmet";
 
-import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown } from 'components';
+import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown, TitleWrapper } from 'components';
 import { copyToClipboard, generateImplementation } from 'auxiliary';
 import { ExpandMore, Settings, Security } from "@material-ui/icons";
 
@@ -226,42 +226,35 @@ const Generate: React.FC = (): JSX.Element => {
 	}
 
 	return (
-		<React.Fragment>
-			<Loading open={isGenerating} />
-			<CardWrapper>
-				<CardContent>
-					<Grid container spacing={8}>
-						<Grid item xs={12} style={{ width: 600 }}>
-							<Grid container direction="column" >
-								{renderInputFields()}
-								{renderSecretField()}
-								{renderGenerateButton()}
-								{showSettings ?
-									<>
-										{renderAdvancedPanel()}
-										{renderCorePanel()}
-									</> : <></>}
+		<TitleWrapper componentName="generate">
+			<React.Fragment>
+				<Loading open={isGenerating} />
+				<CardWrapper>
+					<CardContent>
+						<Grid container spacing={8}>
+							<Grid item xs={12} style={{ width: 600 }}>
+								<Grid container direction="column" >
+									{renderInputFields()}
+									{renderSecretField()}
+									{renderGenerateButton()}
+									{showSettings ?
+										<>
+											{renderAdvancedPanel()}
+											{renderCorePanel()}
+										</> : <></>}
 
+								</Grid>
 							</Grid>
 						</Grid>
-					</Grid>
 
-				</CardContent>
-				<CardActions style={{ backgroundColor: colors.primaryColor }}>
-					<PasswordField label={t('general.password')} value={password} />
-				</CardActions>
-			</CardWrapper>
-		</React.Fragment>
+					</CardContent>
+					<CardActions style={{ backgroundColor: colors.primaryColor }}>
+						<PasswordField label={t('general.password')} value={password} />
+					</CardActions>
+				</CardWrapper>
+			</React.Fragment>
+		</TitleWrapper>
 	);
 };
 
 export default Generate;
-
-/*
-
-                <MetaTags>
-                    <title>Getpass | Strong Password Generator</title>
-                    <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
-                    <HrefLang />
-                </MetaTags>
-*/

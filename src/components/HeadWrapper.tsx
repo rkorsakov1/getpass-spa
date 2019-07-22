@@ -22,15 +22,7 @@ const HeadWrapper: React.FC<HeadProps> =
 
 		return (
 			<React.Fragment>
-				<Helmet
-					htmlAttributes={{ lang: "en", amp: undefined }} // amp takes no value
-					titleTemplate="%s | React App"
-					titleAttributes={{ itemprop: "name", lang: "en" }}
-					meta={[
-						{ name: "description", content: "Server side rendering example" },
-						{ name: "viewport", content: "width=device-width, initial-scale=1" },
-					]}
-				>
+				<Helmet>
 					{canonical()}
 					{alternateLanguages.map((altLanguage, i) => alternate(altLanguage, i))}
 				</Helmet>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography, Divider } from '@material-ui/core';
 import { Android, Apple, AppleSafari, GoogleChrome, DesktopMac, Linux, Windows } from 'mdi-material-ui';
 
-import { Icon, CardWrapper } from 'components';
+import { Icon, CardWrapper, TitleWrapper } from 'components';
 import { useTranslation } from 'react-i18next';
 
 interface IDownloadData {
@@ -97,11 +97,13 @@ const Downloads: React.FC = (): JSX.Element => {
 	};
 
 	return (
-		<CardWrapper>
-			<Grid container direction="column" style={{ padding: 8 }}>
-				{DownloadData.map((el: IDownloadData, i: number) => DownloadBlock(el, i))}
-			</Grid>
-		</CardWrapper>
+		<TitleWrapper componentName="downloads">
+			<CardWrapper>
+				<Grid container direction="column" style={{ padding: 8 }}>
+					{DownloadData.map((el: IDownloadData, i: number) => DownloadBlock(el, i))}
+				</Grid>
+			</CardWrapper>
+		</TitleWrapper>
 	)
 }
 
