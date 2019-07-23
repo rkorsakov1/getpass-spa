@@ -51,8 +51,8 @@
 		},
 		"settings": {
 			"number": "Numbers (0-9)",
-			"upper": "Lower case (a-z)",
-			"lower": "Upper case (A-Z)",
+			"upper": "Upper case (A-Z)",
+			"lower": "Lower case (a-z)",
 			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
 			"length": "Password length"
 		},
@@ -69,8 +69,8 @@
 		},
 		"settings": {
 			"number": "Numbers (0-9)",
-			"upper": "Lower case (a-z)",
-			"lower": "Upper case (A-Z)",
+			"upper": "Upper case (A-Z)",
+			"lower": "Lower case (a-z)",
 			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
 			"length": "Password length",
 			"counter": "Counter",
