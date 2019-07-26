@@ -1,4 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
@@ -74,8 +73,9 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 
 	<script>
 		window.initialI18nStore = JSON.parse('${JSON.stringify(
-			initialI18nStore
-		).replace(/[\/\(\)\']/g, '\\$&')}');
+		initialI18nStore
+		/* eslint-disable-next-line no-useless-escape */
+	).replace(/[\/\(\)\']/g, '\\$&')}');
 		window.initialLanguage = '${initialLanguage}';
 	</script>
 </head>

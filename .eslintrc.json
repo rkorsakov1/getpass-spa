@@ -8,9 +8,11 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true
+		"jest": true,
+		"es6": true
   },
   "rules": {
+		"react/prop-types": 0,
 		"@typescript-eslint/indent": ["error", "tab"],
 		"@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
     "@typescript-eslint/interface-name-prefix" : [0, "never-prefix"]

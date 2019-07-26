@@ -5,8 +5,8 @@ import { CardWrapper, MarkDown, TitleWrapper } from 'components';
 import { useTranslation } from 'react-i18next';
 
 interface IQA {
-	q: string,
-	a: string
+	q: string;
+	a: string;
 }
 
 
@@ -22,7 +22,7 @@ const QA: React.FC = (): JSX.Element => {
 		QAdata.push({ q, a });
 	}
 
-	const QABlock = ({ q, a }: IQA, key: number) => {
+	const QABlock = ({ q, a }: IQA, key: number): JSX.Element => {
 		return (
 			<div key={key}>
 				<ExpansionPanel style={{ marginBottom: 8 }}>
@@ -43,7 +43,7 @@ const QA: React.FC = (): JSX.Element => {
 	return (
 		<TitleWrapper componentName="qa">
 			<CardWrapper asCard={false}>
-				{QAdata.map((el: IQA, i: number) => QABlock(el, i))}
+				{QAdata.map((el: IQA, i: number): JSX.Element => QABlock(el, i))}
 			</CardWrapper>
 		</TitleWrapper>
 	)

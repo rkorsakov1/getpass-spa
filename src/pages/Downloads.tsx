@@ -6,11 +6,11 @@ import { Icon, CardWrapper, TitleWrapper } from 'components';
 import { useTranslation } from 'react-i18next';
 
 interface IDownloadData {
-	enabled: boolean,
-	icon: JSX.Element,
-	name: string,
-	description: string,
-	hyperlink: string
+	enabled: boolean;
+	icon: JSX.Element;
+	name: string;
+	description: string;
+	hyperlink: string;
 }
 
 const baseURL = "https://github.com/stellarbear";
@@ -71,14 +71,14 @@ const Downloads: React.FC = (): JSX.Element => {
 		},
 	];
 
-	const DownloadBlock = ({ enabled, icon, name, description, hyperlink }: IDownloadData, key: number) => {
+	const DownloadBlock = ({ enabled, icon, name, description, hyperlink }: IDownloadData, key: number): JSX.Element => {
 		return (
 			<div key={key}>
 				<Grid item style={{ opacity: enabled ? 1.0 : 0.4 }}>
 					<Grid container direction="row"
 						alignItems="center">
 						<Grid item style={{ padding: 8 }}>
-							<Icon tooltip={name} onClick={() => window.open(hyperlink, '_blank')} enabled={enabled}>
+							<Icon tooltip={name} onClick={(): Window | null => window.open(hyperlink, '_blank')} enabled={enabled}>
 								{icon}
 							</Icon>
 						</Grid>
@@ -100,7 +100,7 @@ const Downloads: React.FC = (): JSX.Element => {
 		<TitleWrapper componentName="downloads">
 			<CardWrapper>
 				<Grid container direction="column" style={{ padding: 8 }}>
-					{DownloadData.map((el: IDownloadData, i: number) => DownloadBlock(el, i))}
+					{DownloadData.map((el: IDownloadData, i: number): JSX.Element => DownloadBlock(el, i))}
 				</Grid>
 			</CardWrapper>
 		</TitleWrapper>

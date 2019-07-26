@@ -1,5 +1,6 @@
 import copyToClipboard from './clipboard';
-import generateImplementation from "./generate";
 import randomImplementation from "./random";
+import { scrypt, bytesToHex } from "./scrypt";
+import generateImplementation from "./generate";
 
-export { copyToClipboard, generateImplementation, randomImplementation }
+export { scrypt, bytesToHex, copyToClipboard, generateImplementation, randomImplementation }

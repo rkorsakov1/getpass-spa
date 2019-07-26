@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 
 interface TitleProps {
-	children: JSX.Element,
-	componentName: string
+	children: JSX.Element;
+	componentName: string;
 }
 
 const TitleWrapper: React.FC<TitleProps> =
-	({ children, componentName }) => {
+	({ children, componentName }): JSX.Element => {
 		const { t } = useTranslation();
 
 		return (

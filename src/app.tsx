@@ -5,7 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 import AnimatedSwitch from 'components/AnimatedSwitch';
 import { HeadWrapper, NavigationWrapper, NotifyWrapper } from 'components';
 
-function App() {
+const App = (): JSX.Element => {
 	return (
 		<HeadWrapper>
 			<NotifyWrapper>
