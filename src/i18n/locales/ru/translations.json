@@ -103,18 +103,32 @@
 	},
 	"meta": {
 		"title": {
-			"random": "Getpass Lite - Random Password Generator",
-			"generate": "Getpass Pro -  Best Free Alternative To Password Managers",
-			"qa": "Getpass FAQ - What You Need To Know",
-			"downloads": "Getpass - Free Download",
-			"notFound": ""
+			"random": "Getpass Lite - Генератор Сложных Паролей",
+			"generate": "Getpass Pro -  Бесплатная Альтернатива Менеджерам Паролей",
+			"qa": "Getpass FAQ - Вопросы И Ответы",
+			"downloads": "Getpass - Скачать Бесплатно",
+			"notFound": "Getpass - Страница Не Найдена"
 		},
 		"description": {
-			"random": "Getpass Lite is a flexible password generator. Up to 4096 symbols. Don't forget to check our Getpass Pro tool for a free alternative to cloud-based passwords managers.",
-			"generate": "Getpass Pro is a stateless cross-platform password manager (generator). This tool allows users to generate cryptographically strong passwords based on their input data.",
-			"qa": "Here you can find answers to most frequent questions about Getpass. Please, ask your question if you didn't find it in the list.",
-			"downloads": "Download Getpass for: Mobile (iOS, Android), Browser (Chrome, Safari), Desktop (Mac, Win, Linux). Satisfaction guaranteed.",
-			"notFound": ""
+			"random": "Getpass Lite - это гибкий генератор паролей. Генерируйте пароли до 4096 символов. Обратите внимание на Getpass Pro - бесплатную альтернатив облачным менеджерам паролей.",
+			"generate": "Getpass Pro - это бесплатный кроссплатформенный менеджер (генератор) паролей. Генерируйте криптографически сложные пароли на основе данных об аккаунте. Мы не храним ваши данные.",
+			"qa": "Здесь вы можете найти ответы на самые популярные вопросы о Getpass. Пожалуйста, задайте свой вопрос, если вы не нашли нужного ответа.",
+			"downloads": "Здесь вы можете скачать Getpass для: мобильных (iOS, Android), браузеров (Chrome, Safari), десктоп (Mac, Win, Linux).",
+			"notFound": "Сервер не может найти запрошенную страницу."
+		},
+		"h1": {
+			"random": "Генератор сложных паролей",
+			"generate": "Бесплатная альтернатива менеджерам паролей",
+			"qa": "FAQ",
+			"downloads": "Скачать Getpass",
+			"notFound": "Страница не найдена"
+		},
+		"keywords": {
+			"random": "Strong password generator, Getpass, random password generator, secret code generator, secure password",
+			"generate": "Генератор сложных паролей, Getpass, лучший генератор паролей,  менеджер паролей, генератор пароля онлайн, альтернатива менеджера паролей, менеджер паролей, хранение паролей, бесплатный менеджер паролей, криптографический пароль",
+			"qa": "Getpass, вопросы и ответы, как это работает, что такое Getpass",
+			"downloads": "скачать менеджер паролей, скачать Getpass, бесплатный менеджер паролей, Android, iOS, Mac, Windows, Linux, Chrome, Safari, Firefox",
+			"notFound": "404, страница не найдена"
 		}
 	},
 	"qa": {

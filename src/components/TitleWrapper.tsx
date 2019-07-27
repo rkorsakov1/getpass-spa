@@ -17,9 +17,12 @@ const TitleWrapper: React.FC<TitleProps> =
 					<title>{t(`meta.title.${componentName}`)}</title>
 					<meta name="description" content={t(`meta.description.${componentName}`)} />
 				</Helmet>
+				<h1>{t(`meta.h1.${componentName}`)}</h1>
 				{children}
 			</React.Fragment>
 		)
 	}
 
 export default TitleWrapper;
+
+//	<meta name="keywords" content={t(`meta.keywords.${componentName}`)} />

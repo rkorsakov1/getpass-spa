@@ -76,7 +76,7 @@
 				"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
 				"length": "Password length",
 				"counter": "Counter"
-			},		
+			},
 			"scrypt": {
 				"title": "Core tweaking",
 				"warning": "**Warning**: You must be confident in the changes you make. This directly affects the **time** of generating passwords, as well as the **result** itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.",
@@ -107,14 +107,28 @@
 			"generate": "Getpass Pro -  Best Free Alternative To Password Managers",
 			"qa": "Getpass FAQ - What You Need To Know",
 			"downloads": "Getpass - Free Download",
-			"notFound": ""
+			"notFound": "Getpass - Page Not Found"
 		},
 		"description": {
 			"random": "Getpass Lite is a flexible password generator. Up to 4096 symbols. Don't forget to check our Getpass Pro tool for a free alternative to cloud-based passwords managers.",
 			"generate": "Getpass Pro is a stateless cross-platform password manager (generator). This tool allows users to generate cryptographically strong passwords based on their input data.",
 			"qa": "Here you can find answers to most frequent questions about Getpass. Please, ask your question if you didn't find it in the list.",
 			"downloads": "Download Getpass for: Mobile (iOS, Android), Browser (Chrome, Safari), Desktop (Mac, Win, Linux). Satisfaction guaranteed.",
-			"notFound": ""
+			"notFound": "Server could not find the page that you have requested."
+		},
+		"h1": {
+			"random": "Random password generator",
+			"generate": "Free password manager alternative",
+			"qa": "FAQ",
+			"downloads": "Download Getpass",
+			"notFound": "Page Not Found"
+		},
+		"keywords": {
+			"random": "Strong password generator, Getpass, random password generator, secret code generator, secure password",
+			"generate": "Strong password generator, Getpass, best password generator, secret code generator, secure password, password manager alternative, free password manager, password generator online",
+			"qa": "Getpass, Q&A, How it works, what is Getpass",
+			"downloads": "download password manager, download Getpass, free password manager download, Android, iOS, Mac, Windows, Linux, Chrome, Safari, Firefox",
+			"notFound": "404, page not found"
 		}
 	},
 	"qa": {
