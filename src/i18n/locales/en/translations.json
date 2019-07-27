@@ -68,13 +68,17 @@
 			"secret": "Secret keyword"
 		},
 		"settings": {
-			"number": "Numbers (0-9)",
-			"upper": "Upper case (A-Z)",
-			"lower": "Lower case (a-z)",
-			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
-			"length": "Password length",
-			"counter": "Counter",
+			"advanced": {
+				"title": "Advanced settings",
+				"number": "Numbers (0-9)",
+				"upper": "Upper case (A-Z)",
+				"lower": "Lower case (a-z)",
+				"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
+				"length": "Password length",
+				"counter": "Counter"
+			},		
 			"scrypt": {
+				"title": "Core tweaking",
 				"warning": "**Warning**: You must be confident in the changes you make. This directly affects the **time** of generating passwords, as well as the **result** itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.",
 				"cost": "Cost factor",
 				"blockSize": "Block size factor"

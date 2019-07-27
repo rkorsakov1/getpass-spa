@@ -129,13 +129,14 @@ const Generate: React.FC = (): JSX.Element => {
 
 	const renderAdvancedPanel = (): JSX.Element => {
 		const { counter, lower, upper, number, special, length, } = state;
+		const pre = 'generate.settings.advanced';
 		return (
 			<div>
 				<ExpansionPanel
 					style={{ marginBottom: '8px', marginTop: '8px', }}>
 					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
 						<Settings color="secondary" />
-						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Advanced settings</Typography>
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>{t(`${pre}.title`)}</Typography>
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails style={{ paddingRight: 2 }}>
 						<Grid
@@ -144,12 +145,12 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<SwitchField label={t('generate.settings.number')} value={number} onChange={(value: boolean): void => onChange('number', value)} />
-							<SwitchField label={t('generate.settings.lower')} value={lower} onChange={(value: boolean): void => onChange('lower', value)} />
-							<SwitchField label={t('generate.settings.upper')} value={upper} onChange={(value: boolean): void => onChange('upper', value)} />
-							<SwitchField label={t('generate.settings.special')} value={special} onChange={(value: boolean): void => onChange('special', value)} />
-							<NumericInputField label={t('generate.settings.length')} min={1} max={4096} value={length} onChange={(value: number): void => onChange('length', value)} />
-							<NumericInputField label={t('generate.settings.counter')} min={0} max={4096} value={counter} onChange={(value: number): void => onChange('counter', value)} />
+							<SwitchField label={t(`${pre}.number`)} value={number} onChange={(value: boolean): void => onChange('number', value)} />
+							<SwitchField label={t(`${pre}.lower`)} value={lower} onChange={(value: boolean): void => onChange('lower', value)} />
+							<SwitchField label={t(`${pre}.upper`)} value={upper} onChange={(value: boolean): void => onChange('upper', value)} />
+							<SwitchField label={t(`${pre}.special`)} value={special} onChange={(value: boolean): void => onChange('special', value)} />
+							<NumericInputField label={t(`${pre}.length`)} min={1} max={4096} value={length} onChange={(value: number): void => onChange('length', value)} />
+							<NumericInputField label={t(`${pre}.counter`)} min={0} max={4096} value={counter} onChange={(value: number): void => onChange('counter', value)} />
 						</Grid>
 					</ExpansionPanelDetails>
 				</ExpansionPanel>
@@ -159,6 +160,7 @@ const Generate: React.FC = (): JSX.Element => {
 
 	const renderCorePanel = (): JSX.Element => {
 		const { blockSizeFactor, costFactor, } = state;
+		const pre = 'generate.settings.scrypt';
 
 		const costHumanReadable = 1 << costFactor;
 		const blockSizeHumanReadable = Math.round(1000 * costHumanReadable * blockSizeFactor * 128 / 1024 / 1024) / 1000;
@@ -167,7 +169,7 @@ const Generate: React.FC = (): JSX.Element => {
 				<ExpansionPanel>
 					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
 						<Security color="secondary" />
-						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>{t(`${pre}.title`)}</Typography>
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails>
 						<Grid
@@ -176,9 +178,9 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<MarkDown source={m('generate.settings.scrypt.warning')} />
-							<NumericInputField label={`${t('generate.settings.scrypt.cost')}: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number): void => onChange('costFactor', value)} />
-							<NumericInputField label={`${t('generate.settings.scrypt.blockSize')}: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number): void => onChange('blockSizeFactor', value)} />
+							<MarkDown source={m(`${pre}.warning`)} />
+							<NumericInputField label={`${t(`${pre}.cost`)}: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number): void => onChange('costFactor', value)} />
+							<NumericInputField label={`${t(`${pre}.blockSize`)}: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number): void => onChange('blockSizeFactor', value)} />
 							<div>
 								<Button variant="contained" onClick={(): void => resetScrypt(12, 4)}>default</Button>
 								<Button variant="contained" style={{ marginLeft: '8px', }} onClick={(): void => resetScrypt(16, 8)}>tough</Button>
