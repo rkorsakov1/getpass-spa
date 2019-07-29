@@ -52,6 +52,7 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 <!doctype html>
 <html lang="">
 <head>
+	<base href="/" />
 	${helmet.title.toString()}
 	${helmet.meta.toString()}
 	${helmet.link.toString()}
@@ -74,9 +75,9 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 
 	<script>
 		window.initialI18nStore = JSON.parse('${JSON.stringify(
-		initialI18nStore
-		/* eslint-disable-next-line no-useless-escape */
-	).replace(/[\/\(\)\']/g, '\\$&')}');
+			initialI18nStore
+			/* eslint-disable-next-line no-useless-escape */
+		).replace(/[\/\(\)\']/g, '\\$&')}');
 		window.initialLanguage = '${initialLanguage}';
 	</script>
 </head>
