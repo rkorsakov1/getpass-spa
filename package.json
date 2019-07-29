@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "yarn clear:local && razzle start",
 		"build": "razzle build && yarn build:sw",
-		"build:sw": "node ./src/sw/build.js",
+		"build:sw": "node ./public/populate.js",
 		"test": "razzle test --env=jsdom",
 		"lint": "eslint \"./src/**/*.{ts,tsx}\"",
 		"lint:fix": "yarn lint --fix --quiet",
@@ -14,8 +14,7 @@
 		"clear": "yarn clear:local && yarn clear:server",
 		"serve:local": "cross-env NODE_ENV=production node build/server.js",
 		"serve:server": "cross-env NODE_ENV=production pm2 start build/server.js --name \"getpass\"",
-		"deploy": "yarn clear && yarn build && yarn parse && yarn serve:server",
-		"parse": "node public/swparse.js"
+		"deploy": "yarn clear && yarn build && yarn parse && yarn serve:server"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.2.0",
