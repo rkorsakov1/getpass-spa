@@ -15,9 +15,9 @@ const TitleWrapper: React.FC<TitleProps> =
 			<React.Fragment>
 				<Helmet>
 					<title>{t(`meta.title.${componentName}`)}</title>
+					<meta name="keywords" content={t(`meta.keywords.${componentName}`)} />
 					<meta name="description" content={t(`meta.description.${componentName}`)} />
 				</Helmet>
-				<h1>{t(`meta.h1.${componentName}`)}</h1>
 				{children}
 			</React.Fragment>
 		)
@@ -25,4 +25,4 @@ const TitleWrapper: React.FC<TitleProps> =
 
 export default TitleWrapper;
 
-//	<meta name="keywords" content={t(`meta.keywords.${componentName}`)} />
+// <h1>{t(`meta.h1.${componentName}`)}</h1>
