@@ -1,14 +1,16 @@
 import { AppBar, Button, CssBaseline, Divider, Drawer, Grid, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Clear, Menu } from '@material-ui/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from "react-router";
 import LanguagePicker from './LanguagePicker';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import { REPLCommand } from 'repl';
+// import { LanguagePicker } from 'components/LanguagePicker';
+// import { at, I18n, useTranslation, fallback } from 'localization';
 
-const styles = (theme: Theme): Record<"menuButton" | "drawer" | "content", CSSProperties | (() => CSSProperties)> => createStyles({
+const styles = (theme: Theme) => createStyles({
 	menuButton: {
 		[theme.breakpoints.up('sm')]: {
 			display: 'none',
@@ -26,8 +28,9 @@ const styles = (theme: Theme): Record<"menuButton" | "drawer" | "content", CSSPr
 	},
 });
 
-interface NavigationProps extends WithStyles<typeof styles>, RouteComponentProps {
+interface NavigationProps extends WithStyles<typeof styles>, RouteComponentProps<any> {
 	children: JSX.Element;
+	classes: any;
 	rtl?: boolean;
 }
 
@@ -36,11 +39,11 @@ const NavigationWrapper: React.FC<NavigationProps> =
 		const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
 		const { t, i18n } = useTranslation();
 
-		const handleDrawerToggle = (): void => {
+		const handleDrawerToggle = () => {
 			setMobileOpen(!mobileOpen);
 		};
 
-		const handleNavigation = (destination: string, handleChange: boolean): void => {
+		const handleNavigation = (destination: string, handleChange: boolean) => {
 			if (handleChange) {
 				handleDrawerToggle();
 			}
@@ -48,18 +51,18 @@ const NavigationWrapper: React.FC<NavigationProps> =
 			history.push(`/${language}${destination}`);
 		};
 
-		const renderNavigationList = (handleChange: boolean): JSX.Element => (
+		const renderNavigationList = (handleChange: boolean) => (
 			<React.Fragment>
-				<Button onClick={(): void => handleNavigation('/faq', handleChange)}>{t('navigation.qa')}</Button>
-				<Button onClick={(): void => handleNavigation('/pro', handleChange)}>{t('navigation.generate')}</Button>
-				<Button onClick={(): void => handleNavigation('/lite', handleChange)}>{t('navigation.random')}</Button>
-				<Button onClick={(): void => handleNavigation('/download', handleChange)}>{t('navigation.download')}</Button>
-				<Button disabled onClick={(): void => handleNavigation('/', handleChange)}>{t('navigation.about')}</Button>
+				<Button onClick={() => handleNavigation('/faq', handleChange)}>{t('navigation.qa')}</Button>
+				<Button onClick={() => handleNavigation('/generator', handleChange)}>{t('navigation.generate')}</Button>
+				<Button onClick={() => handleNavigation('/random', handleChange)}>{t('navigation.random')}</Button>
+				<Button onClick={() => handleNavigation('/download', handleChange)}>{t('navigation.download')}</Button>
+				<Button disabled onClick={() => handleNavigation('/', handleChange)}>{t('navigation.about')}</Button>
 				{!handleChange ? <LanguagePicker /> : <></>}
 			</React.Fragment>
 		);
 
-		const renderDrawer = (): JSX.Element => (
+		const renderDrawer = () => (
 			<Drawer
 				variant="temporary"
 				anchor={rtl ? 'right' : 'left'}
@@ -90,9 +93,9 @@ const NavigationWrapper: React.FC<NavigationProps> =
 
 		);
 
-		const LanguageButton = (): JSX.Element => <LanguagePicker inverted={true} />
+		const LanguageButton = () => <LanguagePicker inverted={true} />
 
-		const MenuButton = (): JSX.Element => <IconButton
+		const MenuButton = () => <IconButton
 			color="inherit"
 			aria-label="Open drawer"
 			onClick={handleDrawerToggle}
@@ -101,35 +104,34 @@ const NavigationWrapper: React.FC<NavigationProps> =
 			<Menu />
 		</IconButton>;
 
-		const LeftButton = (): JSX.Element => {
+		const LeftButton = () => {
 			return (rtl) ? LanguageButton() : MenuButton();
 		};
 
-		const RightButton = (): JSX.Element => {
+		const RightButton = () => {
 			return (rtl) ? MenuButton() : LanguageButton();
 		};
 
-		const renderMobileAppBar = (): JSX.Element => {
-			return (
-				<AppBar position="fixed">
-					<Toolbar>
-						<Grid
-							container
-							direction="row"
-							justify="space-between"
-							alignItems="center"
-						>
-							{LeftButton()}
-							<Typography variant="h6" color="inherit" noWrap>
-								{t('navigation.title')}
-							</Typography>
-							{RightButton()}
-						</Grid>
-					</Toolbar>
-				</AppBar>);
+		const renderMobileAppBar = () => {
+			return (<AppBar position="fixed" className={classes.appBar}>
+				<Toolbar>
+					<Grid
+						container
+						direction="row"
+						justify="space-between"
+						alignItems="center"
+					>
+						{LeftButton()}
+						<Typography variant="h6" color="inherit" noWrap>
+							{t('navigation.title')}
+						</Typography>
+						{RightButton()}
+					</Grid>
+				</Toolbar>
+			</AppBar>);
 		};
 
-		const renderDesktopAppBar = (): JSX.Element => (
+		const renderDesktopAppBar = () => (
 			<Grid
 				container
 				direction="row"
@@ -165,5 +167,5 @@ NavigationWrapper.defaultProps = {
 }
 
 export default
-withStyles(styles)(
-	withRouter(NavigationWrapper));
+	withStyles(styles)(
+		withRouter(NavigationWrapper));

@@ -13,20 +13,18 @@ import { ThemeProvider } from '@material-ui/styles';
 declare global {
 	interface Window {
 		initialLanguage: string;
-		initialI18nStore: string;
+		initialI18nStore: Record<string, any>;
 	}
 }
 
-const BaseApp = (): JSX.Element => {
+const BaseApp = () => {
 	const { initialI18nStore, initialLanguage } = window;
 	useSSR(initialI18nStore, initialLanguage);
 
-	React.useEffect((): void => {
+	React.useEffect(() => {
 		const jssStyles = document.querySelector('#jss-server-side');
 		if (jssStyles) {
-			if (jssStyles.parentNode){
-				jssStyles.parentNode.removeChild(jssStyles);
-			}
+			jssStyles!.parentNode!.removeChild(jssStyles);
 		}
 	}, []);
 

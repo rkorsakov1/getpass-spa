@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
+//import {Helmet} from "react-helmet";
 
-import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown, TitleWrapper } from 'components';
+import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown } from 'components';
 import { copyToClipboard, generateImplementation } from 'auxiliary';
 import { ExpandMore, Settings, Security } from "@material-ui/icons";
 
@@ -11,8 +12,8 @@ import colors from 'theme/colors';
 import { useTranslation } from 'react-i18next';
 
 interface IValid {
-	message: string;
-	isValid: boolean;
+	message: string,
+	isValid: boolean
 }
 
 const Generate: React.FC = (): JSX.Element => {
@@ -44,7 +45,20 @@ const Generate: React.FC = (): JSX.Element => {
 		special: true,
 	});
 
-	const validate = (newState: IGenerate): void => {
+	useEffect(() => {
+		validate(state);
+	}, []);
+
+	const onChange = (propName: string, value: any) => {
+		const newState = { ...state, [propName]: value };
+		setState(newState);
+		validate(newState);
+	}
+	const resetScrypt = (costFactor: number, blockSizeFactor: number) => {
+		setState({ ...state, costFactor, blockSizeFactor });
+	}
+
+	const validate = (newState: IGenerate) => {
 		const { login, service, secret, number, lower, upper, special } = newState;
 
 
@@ -65,29 +79,16 @@ const Generate: React.FC = (): JSX.Element => {
 		}
 	}
 
-	useEffect((): void => {
-		validate(state);
-	}, []);
-
-	const onChange = (propName: string, value: boolean | number | string): void => {
-		const newState = { ...state, [propName]: value };
-		setState(newState);
-		validate(newState);
-	}
-	const resetScrypt = (costFactor: number, blockSizeFactor: number): void => {
-		setState({ ...state, costFactor, blockSizeFactor });
-	}
-
-	const generatePassword = (notify: (message: string) => void): void => {
+	const generatePassword = async (notify: (message: string) => void) => {
 		setIsGenerating(true);
-		setTimeout(async (): Promise<void> => {
+		setTimeout(async () => {
 			try {
 				const pass = await generateImplementation(state);
 
 				notify(t('notify.passwordIsGenerated'));
 				setPassword(pass);
 
-				setTimeout((): void => {
+				setTimeout(() => {
 					copyToClipboard(pass);
 				}, 256);
 			}
@@ -100,24 +101,24 @@ const Generate: React.FC = (): JSX.Element => {
 		}, 16);
 	}
 
-	const renderInputFields = (): JSX.Element => {
+	const renderInputFields = () => {
 		const { login, service } = state;
 		return (
 			<React.Fragment>
 				<Typography variant="caption" style={{ opacity: 0.34 }}>{t('general.caseSensitive')}</Typography>
-				<InputField label={t('generate.input.login')} value={login} onChange={(value: string): void => onChange('login', value)} adornment={false} />
+				<InputField label={t('generate.input.login')} value={login} onChange={(value: string) => onChange('login', value)} adornment={false} />
 				<Typography variant="caption" style={{ opacity: 0.34 }}>{t('general.caseSensitive')}</Typography>
-				<InputField label={t('generate.input.website')} value={service} onChange={(value: string): void => onChange('service', value)} adornment={false} />
+				<InputField label={t('generate.input.website')} value={service} onChange={(value: string) => onChange('service', value)} adornment={false} />
 			</React.Fragment>
 		)
 	}
 
-	const renderSecretField = (): JSX.Element => {
+	const renderSecretField = () => {
 		const { secret } = state;
 		return (
 			<Grid container>
 				<Grid item xs>
-					<InputField label={t('generate.input.secret')} value={secret} onChange={(value: string): void => onChange('secret', value)} />
+					<InputField label={t('generate.input.secret')} value={secret} onChange={(value: string) => onChange('secret', value)} />
 				</Grid>
 				<Grid item>
 					<div dangerouslySetInnerHTML={{ __html: jdenticon.toSvg(secret, 60) }}
@@ -127,16 +128,15 @@ const Generate: React.FC = (): JSX.Element => {
 		);
 	}
 
-	const renderAdvancedPanel = (): JSX.Element => {
+	const renderAdvancedPanel = () => {
 		const { counter, lower, upper, number, special, length, } = state;
-		const pre = 'generate.settings.advanced';
 		return (
 			<div>
 				<ExpansionPanel
 					style={{ marginBottom: '8px', marginTop: '8px', }}>
 					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
 						<Settings color="secondary" />
-						<Typography variant="body1" style={{ paddingLeft: '12px' }}>{t(`${pre}.title`)}</Typography>
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Advanced settings</Typography>
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails style={{ paddingRight: 2 }}>
 						<Grid
@@ -145,12 +145,12 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<SwitchField label={t(`${pre}.number`)} value={number} onChange={(value: boolean): void => onChange('number', value)} />
-							<SwitchField label={t(`${pre}.lower`)} value={lower} onChange={(value: boolean): void => onChange('lower', value)} />
-							<SwitchField label={t(`${pre}.upper`)} value={upper} onChange={(value: boolean): void => onChange('upper', value)} />
-							<SwitchField label={t(`${pre}.special`)} value={special} onChange={(value: boolean): void => onChange('special', value)} />
-							<NumericInputField label={t(`${pre}.length`)} min={1} max={4096} value={length} onChange={(value: number): void => onChange('length', value)} />
-							<NumericInputField label={t(`${pre}.counter`)} min={0} max={4096} value={counter} onChange={(value: number): void => onChange('counter', value)} />
+							<SwitchField label={t('generate.settings.number')} value={number} onChange={(value: boolean) => onChange('number', value)} />
+							<SwitchField label={t('generate.settings.lower')} value={lower} onChange={(value: boolean) => onChange('lower', value)} />
+							<SwitchField label={t('generate.settings.upper')} value={upper} onChange={(value: boolean) => onChange('upper', value)} />
+							<SwitchField label={t('generate.settings.special')} value={special} onChange={(value: boolean) => onChange('special', value)} />
+							<NumericInputField label={t('generate.settings.length')} min={1} max={4096} value={length} onChange={(value: number) => onChange('length', value)} />
+							<NumericInputField label={t('generate.settings.counter')} min={0} max={4096} value={counter} onChange={(value: number) => onChange('counter', value)} />
 						</Grid>
 					</ExpansionPanelDetails>
 				</ExpansionPanel>
@@ -158,9 +158,8 @@ const Generate: React.FC = (): JSX.Element => {
 		);
 	}
 
-	const renderCorePanel = (): JSX.Element => {
+	const renderCorePanel = () => {
 		const { blockSizeFactor, costFactor, } = state;
-		const pre = 'generate.settings.scrypt';
 
 		const costHumanReadable = 1 << costFactor;
 		const blockSizeHumanReadable = Math.round(1000 * costHumanReadable * blockSizeFactor * 128 / 1024 / 1024) / 1000;
@@ -169,7 +168,7 @@ const Generate: React.FC = (): JSX.Element => {
 				<ExpansionPanel>
 					<ExpansionPanelSummary style={{ paddingLeft: '16px' }} expandIcon={<ExpandMore />}>
 						<Security color="secondary" />
-						<Typography variant="body1" style={{ paddingLeft: '12px' }}>{t(`${pre}.title`)}</Typography>
+						<Typography variant="body1" style={{ paddingLeft: '12px' }}>Core tweaking</Typography>
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails>
 						<Grid
@@ -178,12 +177,12 @@ const Generate: React.FC = (): JSX.Element => {
 							justify="flex-start"
 							alignItems="flex-start"
 						>
-							<MarkDown source={m(`${pre}.warning`)} />
-							<NumericInputField label={`${t(`${pre}.cost`)}: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number): void => onChange('costFactor', value)} />
-							<NumericInputField label={`${t(`${pre}.blockSize`)}: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number): void => onChange('blockSizeFactor', value)} />
+							<MarkDown source={m('generate.settings.scrypt.warning')} />
+							<NumericInputField label={`${t('generate.settings.scrypt.cost')}: ${costHumanReadable}`} min={1} max={24} value={costFactor} onChange={(value: number) => onChange('costFactor', value)} />
+							<NumericInputField label={`${t('generate.settings.scrypt.blockSize')}: ${blockSizeHumanReadable} Mb`} min={1} max={24} value={blockSizeFactor} onChange={(value: number) => onChange('blockSizeFactor', value)} />
 							<div>
-								<Button variant="contained" onClick={(): void => resetScrypt(12, 4)}>default</Button>
-								<Button variant="contained" style={{ marginLeft: '8px', }} onClick={(): void => resetScrypt(16, 8)}>tough</Button>
+								<Button variant="contained" onClick={() => resetScrypt(12, 4)}>default</Button>
+								<Button variant="contained" style={{ marginLeft: '8px', }} onClick={() => resetScrypt(16, 8)}>tough</Button>
 							</div>
 						</Grid>
 					</ExpansionPanelDetails>
@@ -192,7 +191,7 @@ const Generate: React.FC = (): JSX.Element => {
 		);
 	}
 
-	const renderGenerateButton = (): JSX.Element => {
+	const renderGenerateButton = () => {
 		const { message, isValid } = valid;
 
 		return (
@@ -200,13 +199,13 @@ const Generate: React.FC = (): JSX.Element => {
 				<Grid item xs
 					style={{ paddingRight: '12px', }}>
 					<NotificationContext.Consumer>
-						{({ updateMessage }): JSX.Element =>
+						{({ updateMessage }) =>
 							<Button
 								style={{ height: '50px' }}
 								fullWidth
 								variant="contained"
 								color="primary"
-								disabled={!isValid} onClick={(): void => generatePassword(updateMessage)}>
+								disabled={!isValid} onClick={() => generatePassword(updateMessage)}>
 								{message}
 							</Button>
 						}
@@ -217,7 +216,7 @@ const Generate: React.FC = (): JSX.Element => {
 						aria-label="show advanced settings"
 						style={{ marginRight: '8px', }}
 						color="secondary"
-						onClick={(): void => setShowSettings(!showSettings)}
+						onClick={() => setShowSettings(!showSettings)}
 					>
 						<Settings />
 					</IconButton>
@@ -227,35 +226,42 @@ const Generate: React.FC = (): JSX.Element => {
 	}
 
 	return (
-		<TitleWrapper componentName="generate">
-			<React.Fragment>
-				<Loading open={isGenerating} />
-				<CardWrapper>
-					<CardContent>
-						<Grid container spacing={8}>
-							<Grid item xs={12} style={{ width: 600 }}>
-								<Grid container direction="column" >
-									{renderInputFields()}
-									{renderSecretField()}
-									{renderGenerateButton()}
-									{showSettings ?
-										<>
-											{renderAdvancedPanel()}
-											{renderCorePanel()}
-										</> : <></>}
+		<React.Fragment>
+			<Loading open={isGenerating} />
+			<CardWrapper>
+				<CardContent>
+					<Grid container spacing={8}>
+						<Grid item xs={12} style={{ width: 600 }}>
+							<Grid container direction="column" >
+								{renderInputFields()}
+								{renderSecretField()}
+								{renderGenerateButton()}
+								{showSettings ?
+									<>
+										{renderAdvancedPanel()}
+										{renderCorePanel()}
+									</> : <></>}
 
-								</Grid>
 							</Grid>
 						</Grid>
+					</Grid>
 
-					</CardContent>
-					<CardActions style={{ backgroundColor: colors.primaryColor }}>
-						<PasswordField label={t('general.password')} value={password} />
-					</CardActions>
-				</CardWrapper>
-			</React.Fragment>
-		</TitleWrapper>
+				</CardContent>
+				<CardActions style={{ backgroundColor: colors.primaryColor }}>
+					<PasswordField label={t('general.password')} value={password} />
+				</CardActions>
+			</CardWrapper>
+		</React.Fragment>
 	);
 };
 
 export default Generate;
+
+/*
+
+                <MetaTags>
+                    <title>Getpass | Strong Password Generator</title>
+                    <meta name="description" content="Generate strong passwords on-demand. We don't store you data. Check our github repository for details." />
+                    <HrefLang />
+                </MetaTags>
+*/

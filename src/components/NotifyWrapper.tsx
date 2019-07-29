@@ -3,7 +3,7 @@ import { Snackbar, Fade, IconButton } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
 import { useTranslation } from "react-i18next";
-import * as serviceWorker from "sw/init";
+import * as serviceWorker from 'serviceWorker';
 
 //  https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 const NotificationContext = createContext({
@@ -22,28 +22,27 @@ const NotifyWrapper: React.FC<NotifyProps> = ({ children, timeout }): JSX.Elemen
 	const [open, setOpen] = useState(false);
 	const [message, setMessage] = useState('');
 
-	const updateMessage = (message: string): void => {
+	const updateMessage = (message: string) => {
 		setMessage(message);
 		setOpen(true);
 	}
 
-	const handleClose = (): void => {
+	const handleClose = () => {
 		setOpen(false);
 	};
 
-	useEffect((): void => {
+	useEffect(() => {
 		if ("serviceWorker" in navigator) {
 			serviceWorker.register({
-				onSuccess: (registration: ServiceWorkerRegistration): void => updateMessage(t('notify.pwa.ready')),
-				onUpdate: (registration: ServiceWorkerRegistration): void => updateMessage(t('notify.pwa.update')),
+				onSuccess: (registration: ServiceWorkerRegistration) => updateMessage(t('notify.pwa.ready')),
+				onUpdate: (registration: ServiceWorkerRegistration) => updateMessage(t('notify.pwa.update')),
 			});
 		} else {
-			/* eslint-disable-next-line no-console */
 			console.log("Service worker not supported");
 		}
 	});
 
-	const renderSnackBar = (): JSX.Element => {
+	const renderSnackBar = () => {
 		return (
 			<Snackbar
 				autoHideDuration={timeout}
