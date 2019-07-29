@@ -75,9 +75,9 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 
 	<script>
 		window.initialI18nStore = JSON.parse('${JSON.stringify(
-			initialI18nStore
-			/* eslint-disable-next-line no-useless-escape */
-		).replace(/[\/\(\)\']/g, '\\$&')}');
+		initialI18nStore
+		/* eslint-disable-next-line no-useless-escape */
+	).replace(/[\/\(\)\']/g, '\\$&')}');
 		window.initialLanguage = '${initialLanguage}';
 	</script>
 </head>
