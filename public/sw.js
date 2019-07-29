@@ -1,4 +1,4 @@
-const urlsToCache = "%URL%";
+const urlsToCache = ["%URL%"];
 const cacheName = "%NAME%";
 
 self.addEventListener('install', function (event) {

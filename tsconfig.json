@@ -35,7 +35,7 @@
 		]
 	},
 	"include": [
-		"src"
+		"src", "public/swparse.js"
 	],
 	"exclude": [
 		"node_modules",

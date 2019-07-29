@@ -14,7 +14,7 @@
 		"serve:local": "cross-env NODE_ENV=production node build/server.js",
 		"serve:server": "cross-env NODE_ENV=production pm2 start build/server.js --name \"getpass\"",
 		"deploy": "yarn clear && yarn build && yarn parse && yarn serve:server",
-		"parse": "node src/swparse.ts"
+		"parse": "node public/swparse.js"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.2.0",
