@@ -4,7 +4,8 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "yarn clear:local && razzle start",
-		"build": "razzle build",
+		"build": "razzle build && yarn build:sw",
+		"build:sw": "node ./src/sw/build.js",
 		"test": "razzle test --env=jsdom",
 		"lint": "eslint \"./src/**/*.{ts,tsx}\"",
 		"lint:fix": "yarn lint --fix --quiet",
@@ -61,7 +62,8 @@
 		"ts-jest": "^24.0.2",
 		"tslint": "^5.18.0",
 		"tslint-react": "^4.0.0",
-		"typescript": "^3.5.3"
+		"typescript": "^3.5.3",
+		"workbox-build": "^4.3.1"
 	},
 	"husky": {
 		"hooks": {
