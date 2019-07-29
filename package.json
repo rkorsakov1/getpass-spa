@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"license": "MIT",
 	"scripts": {
-		"start": "razzle start",
+		"start": "yarn clear:local && razzle start",
 		"build": "razzle build",
 		"test": "razzle test --env=jsdom",
 		"lint": "eslint \"./src/**/*.{ts,tsx}\"",
@@ -67,5 +67,23 @@
 		"hooks": {
 			"pre-commit": "yarn lint"
 		}
+	},
+	"jest": {
+		"transform": {
+			"\\.(ts|tsx)$": "ts-jest"
+		},
+		"testMatch": [
+			"<rootDir>/src/**/__tests__/**/*.(ts|js)?(x)",
+			"<rootDir>/src/**/?(*.)(spec|test).(ts|js)?(x)"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"json"
+		],
+		"collectCoverageFrom": [
+			"src/**/*.{js,jsx,ts,tsx}"
+		]
 	}
 }

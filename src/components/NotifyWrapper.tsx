@@ -22,27 +22,28 @@ const NotifyWrapper: React.FC<NotifyProps> = ({ children, timeout }): JSX.Elemen
 	const [open, setOpen] = useState(false);
 	const [message, setMessage] = useState('');
 
-	const updateMessage = (message: string) => {
+	const updateMessage = (message: string): void => {
 		setMessage(message);
 		setOpen(true);
 	}
 
-	const handleClose = () => {
+	const handleClose = (): void => {
 		setOpen(false);
 	};
 
-	useEffect(() => {
+	useEffect((): void => {
 		if ("serviceWorker" in navigator) {
 			serviceWorker.register({
-				onSuccess: (registration: ServiceWorkerRegistration) => updateMessage(t('notify.pwa.ready')),
-				onUpdate: (registration: ServiceWorkerRegistration) => updateMessage(t('notify.pwa.update')),
+				onSuccess: (registration: ServiceWorkerRegistration): void => updateMessage(t('notify.pwa.ready')),
+				onUpdate: (registration: ServiceWorkerRegistration): void => updateMessage(t('notify.pwa.update')),
 			});
 		} else {
+			/* eslint-disable-next-line no-console */
 			console.log("Service worker not supported");
 		}
 	});
 
-	const renderSnackBar = () => {
+	const renderSnackBar = (): JSX.Element => {
 		return (
 			<Snackbar
 				autoHideDuration={timeout}

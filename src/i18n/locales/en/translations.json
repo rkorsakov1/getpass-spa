@@ -38,8 +38,8 @@
 	},
 	"navigation": {
 		"qa": "faq",
-		"generate": "generator",
-		"random": "random",
+		"generate": "pro",
+		"random": "lite",
 		"download": "download",
 		"about": "about",
 		"title": "getpass!"
@@ -49,10 +49,10 @@
 			"validInput": "Generate password",
 			"wrongAlphabet": "Alphabet cannot be empty!"
 		},
-		"settings":{
+		"settings": {
 			"number": "Numbers (0-9)",
-			"upper": "Lower case (a-z)",
-			"lower": "Upper case (A-Z)",
+			"upper": "Upper case (A-Z)",
+			"lower": "Lower case (a-z)",
 			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
 			"length": "Password length"
 		},
@@ -67,14 +67,18 @@
 			"website": "Website",
 			"secret": "Secret keyword"
 		},
-		"settings":{
-			"number": "Numbers (0-9)",
-			"upper": "Lower case (a-z)",
-			"lower": "Upper case (A-Z)",
-			"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
-			"length": "Password length",
-			"counter": "Counter",
+		"settings": {
+			"advanced": {
+				"title": "Advanced settings",
+				"number": "Numbers (0-9)",
+				"upper": "Upper case (A-Z)",
+				"lower": "Lower case (a-z)",
+				"special": "Special (!#$%&()*+,-.:;<=>?@[]^_{})",
+				"length": "Password length",
+				"counter": "Counter"
+			},
 			"scrypt": {
+				"title": "Core tweaking",
 				"warning": "**Warning**: You must be confident in the changes you make. This directly affects the **time** of generating passwords, as well as the **result** itself. Moreover, in addition to the secret, you will need to remember the settings used here, if you changed them, in order to get the same passwords on different devices. You can always reset to the default settings.",
 				"cost": "Cost factor",
 				"blockSize": "Block size factor"
@@ -96,6 +100,36 @@
 			"update": "New content is available, please reload your web browser"
 		},
 		"copied": "Text is copied to clipboard"
+	},
+	"meta": {
+		"title": {
+			"random": "Getpass Lite - Random Password Generator",
+			"generate": "Getpass Pro -  Best Free Alternative To Password Managers",
+			"qa": "Getpass FAQ - What You Need To Know",
+			"downloads": "Getpass - Free Download",
+			"notFound": "Getpass - Page Not Found"
+		},
+		"description": {
+			"random": "Getpass Lite is a flexible password generator. Up to 4096 symbols. Don't forget to check our Getpass Pro tool for a free alternative to cloud-based passwords managers.",
+			"generate": "Getpass Pro is a stateless cross-platform password manager (generator). This tool allows users to generate cryptographically strong passwords based on their input data.",
+			"qa": "Here you can find answers to most frequent questions about Getpass. Please, ask your question if you didn't find it in the list.",
+			"downloads": "Download Getpass for: Mobile (iOS, Android), Browser (Chrome, Safari), Desktop (Mac, Win, Linux). Satisfaction guaranteed.",
+			"notFound": "Server could not find the page that you have requested."
+		},
+		"h1": {
+			"random": "Random password generator",
+			"generate": "Free password manager alternative",
+			"qa": "FAQ",
+			"downloads": "Download Getpass",
+			"notFound": "Page Not Found"
+		},
+		"keywords": {
+			"random": "Strong password generator, Getpass, random password generator, secret code generator, secure password",
+			"generate": "Strong password generator, Getpass, best password generator, secret code generator, secure password, password manager alternative, free password manager, password generator online",
+			"qa": "Getpass, Q&A, How it works, what is Getpass",
+			"downloads": "download password manager, download Getpass, free password manager download, Android, iOS, Mac, Windows, Linux, Chrome, Safari, Firefox",
+			"notFound": "404, page not found"
+		}
 	},
 	"qa": {
 		"q0": "What is Getpass?",
@@ -195,6 +229,12 @@
 			"Disadvantages:",
 			"* It takes some time to change your old passwords to Getpass ones (this is every password manager issue, to be honest)",
 			"* Speaking of local policies when you are forced to change your password in some period of time, we can't say that counter solution is an elegant way to do this, but we think that this is the least inconvenient way to implement this functionality"
+		],
+		"q11": "What if my password for a particular website was hacked?",
+		"a11": [
+			"This is one of the cases where you can use a Counter parameter by increasing its value from the default “0”. Remember that leaked password (even if the attacker somehow managed to find that you are using Getpass with specific Login and Website) does not mean that your Secret Keyword was leaked too. It is practically impossible to brute force it based on the obtained information.",
+			"",
+			"The other way to overcome this issue (can't say this is an elegant way) is to alter/change your website name: for example, use 'gmail_new', 'gmail_after-hacked', 'gmail.com' if your previous website value was 'gmail'."
 		]
 	}
 }

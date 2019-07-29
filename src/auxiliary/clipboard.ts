@@ -1,14 +1,16 @@
-const copyToClipboard = (text: string) => {
+const copyToClipboard = (text: string): void => {
 	var copyFrom = document.createElement("textarea");
 	var copyTo = document.getElementById("clipboard");
 	copyFrom.textContent = text;
 
-	copyTo!.appendChild(copyFrom);
+	if (copyTo != null){
+		copyTo.appendChild(copyFrom);
 
-	copyFrom.select();
-	document.execCommand('copy');
+		copyFrom.select();
+		document.execCommand('copy');
 
-	copyTo!.removeChild(copyFrom);
+		copyTo.removeChild(copyFrom);
+	}
 }
 
 export default copyToClipboard;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface MarkDownProps {
-	source: string
+	source: string;
 }
 
 const MarkDown: React.FC<MarkDownProps> = ({ source }): JSX.Element => (

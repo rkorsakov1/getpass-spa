@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import 'css/router-animation.css';
 
 
-const AnimatedSwitch: React.FC<RouteComponentProps> = ({ location, children }) => (
+const AnimatedSwitch: React.FC<RouteComponentProps> = ({ location, children }): JSX.Element => (
 	<TransitionGroup component="main" className="animated-router-outer">
 		<CSSTransition key={location.key} timeout={300} classNames="fade" appear>
 			<section className="animated-router-inner">
