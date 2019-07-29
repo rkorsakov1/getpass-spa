@@ -1,18 +1,23 @@
 // NOTE Add your offline resources here. Also see docs/PWA.md for more info
-const urlsToCache = ['/en/']
+const urlsToCache = {
+	en: ['/en/'],
+	additional: [/\/static\/media\/logo\.\w{8}\.svg/]
+};
 
 self.addEventListener('install', function (event) {
-	const CACHE_NAME = `cache`;
+	const locale = new URL(location).searchParams.get('locale');
+	const CACHE_NAME = `${locale}-cache`;
 
 	event.waitUntil(
 		caches.open(CACHE_NAME).then(function (cache) {
-			return cache.addAll(urlsToCache);
+			return cache.addAll(urlsToCache[locale]);
 		})
 	);
 });
 
 self.addEventListener('fetch', function (event) {
-	const CACHE_NAME = `cache`;
+	const locale = new URL(location).searchParams.get('locale');
+	const CACHE_NAME = `${locale}-cache`;
 
 	event.respondWith(
 		caches.open(CACHE_NAME).then(function (cache) {
@@ -34,7 +39,7 @@ self.addEventListener('fetch', function (event) {
 							return response;
 						})
 						.catch(function () {
-							return caches.match(`/en/`);
+							return caches.match(`/${locale}/`);
 						})
 				);
 			});
@@ -43,7 +48,8 @@ self.addEventListener('fetch', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-	const CACHE_NAME = `cache`;
+	const locale = new URL(location).searchParams.get('locale');
+	const CACHE_NAME = `${locale}-cache`;
 
 	event.waitUntil(
 		caches.keys().then(function (keys) {

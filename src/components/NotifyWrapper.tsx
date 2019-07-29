@@ -3,7 +3,7 @@ import { Snackbar, Fade, IconButton } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
 import { useTranslation } from "react-i18next";
-import * as serviceWorker from "sw/init";
+import * as serviceWorker from 'serviceWorker';
 
 //  https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
 const NotificationContext = createContext({

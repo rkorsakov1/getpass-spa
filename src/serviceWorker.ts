@@ -54,7 +54,7 @@ export function register(config?: Config): void {
 		}
 
 		window.addEventListener('load', () => {
-			const swUrl = `/sw.js`;
+			const swUrl = `/service-worker.js?locale=en`;
 			registerValidSW(swUrl, config);
 		});
 	}
