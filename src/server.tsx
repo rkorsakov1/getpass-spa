@@ -59,6 +59,7 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 	<meta charSet='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="manifest" href="/manifest.json">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500">
 	<style id="jss-server-side">${css}</style>
 
