@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "yarn clear:local && razzle start",
-		"build": "razzle build && yarn build:sw",
+		"build": "razzle build",
 		"build:sw": "node ./src/sw/build.js",
 		"test": "razzle test --env=jsdom",
 		"lint": "eslint \"./src/**/*.{ts,tsx}\"",
