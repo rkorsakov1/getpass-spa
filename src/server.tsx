@@ -125,7 +125,7 @@ i18n
 			server
 				.disable('x-powered-by')
 				.use(handle(i18n))
-				.use('/locales', express.static(`${appSrc}/locales`))
+				.use('/locales', express.static(`${appSrc}/i18n/locales`))
 				.use(express.static(process.env.RAZZLE_PUBLIC_DIR as string))
 				.get('/*', async (req: express.Request, res: express.Response): Promise<void> => {
 					const context: StaticRouterContext = {};
