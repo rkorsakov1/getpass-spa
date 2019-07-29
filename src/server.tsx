@@ -60,6 +60,7 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500">
+	<link rel="manifest" href="/manifest.json">
 	<style id="jss-server-side">${css}</style>
 
 	${process.env.NODE_ENV === 'production'
