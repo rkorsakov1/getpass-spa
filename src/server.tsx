@@ -18,7 +18,7 @@ import { LanguageDetector, handle } from "i18next-express-middleware";
 import { theme } from 'theme';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 
-import cssPreload from "css/cssPreload";
+import customCss from "css";
 import "fonts/index.css";
 
 
@@ -32,7 +32,8 @@ interface IAssets {
 }
 
 interface ITemplate {
-	css: string;
+	ssrCss: string;
+	customCss: string;
 	markup: string;
 	assets: IAssets;
 	helmet: HelmetData;
@@ -49,20 +50,20 @@ declare module "express" {
 const server = express();
 const appSrc: string = path.resolve(fs.realpathSync(process.cwd()), 'src');
 
-const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, css }: ITemplate): string => (`
+const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, ssrCss, customCss }: ITemplate): string => (`
 <!doctype html>
 <html lang="${initialLanguage}">
 <head>
 	<base href="/" />
-	${helmet.title.toString()}
 	${helmet.meta.toString()}
 	${helmet.link.toString()}
+	${helmet.title.toString()}
 	<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 	<meta charSet='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="manifest" href="/manifest.json">
-	<style id="jss-server-side">${css}</style>
+	<style id="jss-server-side">${ssrCss}</style>
 
 	${process.env.NODE_ENV === 'production'
 		? `<script src="${assets.client.js}" defer></script>`
@@ -71,7 +72,7 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, c
 		? `<link rel="stylesheet" href="${assets.client.css}">`
 		: ''}
 
-	<style>${cssPreload}</style>
+	<style>${customCss}</style>
 
 	<script>
 		window.initialI18nStore = JSON.parse('${JSON.stringify(
@@ -116,6 +117,15 @@ const i18nOptions = {
 	},
 };
 
+const minifyCss = (css: string): string => {
+	css = css.replace(': ', ':');
+
+	const replaceArray = ["\r\n", "\r", "\n", "\t", '  ', '    ', '    '];
+	css = css.replace(RegExp('/' + replaceArray.join('|') + '/', 'g'), '');
+
+	return css;
+}
+
 i18n
 	.use(Backend)
 	.use(LanguageDetector)
@@ -153,7 +163,8 @@ i18n
 							template({
 								assets,
 								markup,
-								css: sheets.toString(),
+								customCss: minifyCss(customCss),
+								ssrCss: minifyCss(sheets.toString()),
 								helmet: Helmet.renderStatic(),
 								initialLanguage: req.i18n.language,
 								initialI18nStore: req.i18n.services.resourceStore.data
