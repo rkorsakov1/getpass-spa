@@ -1,6 +1,6 @@
 {
-	"name": "my-razzle-app",
-	"version": "0.1.0",
+	"name": "getpass-spa",
+	"version": "0.9.0",
 	"license": "MIT",
 	"scripts": {
 		"start": "yarn clear:local && razzle start",
