@@ -51,7 +51,7 @@ const appSrc: string = path.resolve(fs.realpathSync(process.cwd()), 'src');
 
 const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, css }: ITemplate): string => (`
 <!doctype html>
-<html lang="">
+<html lang="${initialLanguage}">
 <head>
 	<base href="/" />
 	${helmet.title.toString()}
@@ -147,11 +147,6 @@ i18n
 					if (url) {
 						res.redirect(url);
 					} else {
-						/*const initialI18nStore = {};
-						req.i18n.languages.forEach((l: string) => {
-							initialI18nStore[l] = req.i18n.services.resourceStore.data[l];
-						});*/
-
 						const assets: IAssets = await import(process.env.RAZZLE_ASSETS_MANIFEST as string);
 
 						res.status(200).send(
