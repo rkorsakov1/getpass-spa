@@ -1,32 +1,44 @@
-var CACHE = "%NAME%"
+var CACHE = "CACHE-%NAME%"
+var PRECACHE = "PRECACHE-%NAME%"
 
-self.addEventListener('install', function(evt) {
-  evt.waitUntil(precache())
-})
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(["%URL%"]))
+      .then(self.skipWaiting())
+  );
+});
 
-self.addEventListener('fetch', function(evt) {
-  evt.respondWith(fromCache(evt.request))
-  evt.waitUntil(update(evt.request))
-})
+self.addEventListener('activate', event => {
+  const currentCaches = [CACHE, PRECACHE];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
+  );
+});
 
-function precache() {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.addAll(["%URL%"])
-  })
-}
 
-function fromCache(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-      return matching || null;
-      });
-  });
-}
+self.addEventListener('fetch', event => {
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response)
-    })
-  })
-}
+        return caches.open(CACHE).then(cache => {
+          return fetch(event.request).then(response => {
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
+});
