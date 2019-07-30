@@ -26,6 +26,11 @@ module.exports = {
 
 		const srcPath = path.resolve("./src")
 		appConfig.resolve.modules.push(srcPath);
+
+		appConfig.module.rules.push({
+			test: /\.(woff|woff2|eot|ttf|svg)$/,
+			loader: 'file-loader'
+		});
 		return appConfig;
 	}
 };
