@@ -28,8 +28,26 @@ self.addEventListener('fetch', event => {
 		event.respondWith(
 			caches.match(event.request).then(cachedResponse => {
 				if (cachedResponse) {
+					//	https://stackoverflow.com/questions/45434470/only-in-chrome-service-worker-a-redirected-response-was-used-for-a-reque
+					if (cachedResponse.redirected) {
+						const clonedResponse = response.clone();
+
+						const bodyPromise = 'body' in clonedResponse ?
+							Promise.resolve(clonedResponse.body) :
+							clonedResponse.blob();
+
+						return bodyPromise.then((body) => {
+							return new Response(body, {
+								headers: clonedResponse.headers,
+								status: clonedResponse.status,
+								statusText: clonedResponse.statusText,
+							});
+						});
+					}
+
 					return cachedResponse;
 				}
+
 
 				return caches.open(CACHE).then(cache => {
 					return fetch(event.request).then(response => {
