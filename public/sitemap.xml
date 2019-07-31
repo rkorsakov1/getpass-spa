@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://getpass.io/en</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+     </url>
+  <url>  <loc>https://getpass.io/en/pro</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+     </url>
+  <url>  <loc>https://getpass.io/en/lite</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+     </url>    
+  <url>  <loc>https://getpass.io/en/download</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>
+  <url>  <loc>https://getpass.io/en/faq</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>
+  <url>  <loc>https://getpass.io/ru</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>
+  <url>  <loc>https://getpass.io/ru/pro</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>
+  <url>  <loc>https://getpass.io/ru/lite</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>    
+  <url>  <loc>https://getpass.io/ru/download</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    </url>
+  <url>  <loc>https://getpass.io/ru/faq</loc>
+    <lastmod>2019-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
