@@ -9,31 +9,31 @@
 	"downloads": {
 		"android": [
 			"Prebuilt *.apk files available.",
-			"Google Play version is scheduled (late summer)."
+			"Google Play version is scheduled"
 		],
 		"ios": [
 			"You can manually build *.ipa from source code (if you have ADP account).",
-			"App Store version is scheduled (late autumn)"
+			"App Store version is scheduled"
 		],
 		"chrome": [
-			"Under development.",
-			"Mid summer."
+			"Prebuild unpacked extension archive is available",
+			"Chrome Store version is scheduled"
 		],
 		"safari": [
-			"Under development.",
-			"Late summer."
+			"You can manually build extension from source code",
+			"Safari Store version is scheduled"
 		],
 		"windows": [
-			"Under development.",
-			"Late autumn."
+			"Prebuild binaries and installers are available",
+			"Microsoft store version is not planned"
 		],
 		"linux": [
-			"Under development.",
-			"Late autumn."
+			"Prebuild binaries and installers are available",
+			"Repo distributions are not planned"
 		],
 		"macintosh": [
-			"Under development.",
-			"Late summer."
+			"You can manually build extension from source code",
+			"Binaries will be available soon"
 		]
 	},
 	"navigation": {

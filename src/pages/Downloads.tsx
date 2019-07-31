@@ -42,28 +42,28 @@ const Downloads: React.FC = (): JSX.Element => {
 			hyperlink: `${baseURL}/getpass-extension`
 		},
 		{
-			enabled: false,
+			enabled: true,
 			icon: <AppleSafari />,
 			name: 'Safari extension',
 			description: m('downloads.safari'),
 			hyperlink: `${baseURL}/getpass-extension`
 		},
 		{
-			enabled: false,
+			enabled: true,
 			icon: <Windows />,
 			name: 'Windows desktop',
 			description: m('downloads.windows'),
 			hyperlink: `${baseURL}/getpass-desktop`
 		},
 		{
-			enabled: false,
+			enabled: true,
 			icon: <Linux />,
 			name: 'Linux desktop',
 			description: m('downloads.linux'),
 			hyperlink: `${baseURL}/getpass-desktop`
 		},
 		{
-			enabled: false,
+			enabled: true,
 			icon: <DesktopMac />,
 			name: 'Mac desktop',
 			description: m('downloads.macintosh'),
