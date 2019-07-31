@@ -30,7 +30,7 @@ self.addEventListener('fetch', event => {
 				if (cachedResponse) {
 					//	https://stackoverflow.com/questions/45434470/only-in-chrome-service-worker-a-redirected-response-was-used-for-a-reque
 					if (cachedResponse.redirected) {
-						const clonedResponse = response.clone();
+						const clonedResponse = cachedResponse.clone();
 
 						const bodyPromise = 'body' in clonedResponse ?
 							Promise.resolve(clonedResponse.body) :
