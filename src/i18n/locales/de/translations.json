@@ -125,110 +125,110 @@
 			"qa": "Getpass, Q&A, Was ist Getpass, Wie funktioniert Getpass",
 			"downloads": "Getpass herunterladen, Passwort-Manager herunterladen, konstenlosen Passwort-Manager herunterladen, Android, iOS, Mac, Windows, Linux, Chrome, Safari, Firefox",
 			"notFound": "404, Seite nicht gefunden"
-		},
-		"qa": {
-			"q0": "Was ist Getpass?",
-			"a0": [
-				"Getpass ist ein platformübergreifender Passwort-Manager (Generator).",
-				"Dieses Programm lässt kriptographisch sichere Passwörte auf Basis von Eingabedaten generieren.",
-				"",
-				"Getpass benutzt eine hash-like Schlüsselableitungsfunktion (scrypt), die die gleichen Ausgaben für die gleichen Eingabeparameter erzeugt.",
-				"",
-				"Diese Funktion kann nicht rückgängig verwendet werden, um die Eingabeparameter aus dem Passwort zu erstellen.",
-				"Für fortgeschrittene Benutzer: Schauen Sie sich die Einstellungen für mehr Möglichkeiten an."
-			],
-			"q1": "Wie funktioniert Getpass",
-			"a1": [
-				"Basierend auf Kundendefinierten Eingabeparameter generiert die scrypt-Funktion ein kriptografisch sicheres Passwort.",
-				"",
-				"Beispiel:",
-				"* Website: **milkyway.com**  ",
-				"* Schlüsselwort: **2,52m light years away** ",
-				"",
-				"Ausgabe: **3q_q(MFWaMGeao+[CX**"
-			],
-			"q2": "Generator-Parameter",
-			"a2": [
-				"In meisten Fällen brauchen Sie nicht, etwas zu verändern, und Sie können die Standardeinstellungen verwenden. Sie finden mehr Informationen dazu in der Sektion 'Was kann mit erweiterten Einstellungen verändert werden?'",
-				"* Alphabet: Zahlen (0-9), A-Z, a-z, Sonderzeichen",
-				"* Passwortlänge: 18",
-				"* Zähler: 0",
-				"* Scryptparameter: N: 4096, r: 4, p: 1",
-				"",
-				"Anmerkung: Zur bequemen platformübergreifende Nutzung können Sie sowohl Generator-Parameter als auch Ihre Logins und Websites exportieren/importieren."
-			],
-			"q3": "Was ist ein Login?",
-			"a3": [
-				"Das Login ist ein Identikator des Nutzers auf einer Website.",
-				"Sie können als Login ein reelles Login für diese Website, eine E-Mail Adresse, Ihre Telefonnummer oder was ganz anderes verwenden.",
-				"",
-				"Für die meisten Fällen empfehlen wir Ihnen, die reellen Logins zu benutzen, weil Getpass sicher bleibt auch wenn Login und Website veröffentlicht sind.",
-				"Anmerkung: 'andromeda' und 'Andromeda' sind zwei verschiedene Loginwerte (beachten Sie Groß- und Kleinschreibung)"
-			],
-			"q4": "Was ist eine Website?",
-			"a4": [
-				"Die Website ist der Name des Services, für das Sie ein Passwort generieren wollen.",
-				"Sie kann genau wie das Login reell oder erdacht sein.",
-				"",
-				"Wir empfehlen aber, Ihre Daten ernst zu nehmen.",
-				"Anmerkung: 'milkyway.com', 'milkyway', 'milkyway com ' sind unterschiedliche Websitewerte."
-			],
-			"q5": "Was ist ein Schlüsselwort?",
-			"a5": [
-				"Das Schlüsselwort ist eine Folge von Symbolen, die zur Erstellung eines kryptographisch sicheren Passworts verwendet wird. Erwägen Sie es als ein Masterpasswort, um alle anderen Passwörter zu erzeugen. Es kann (und wir empfehlen es) eine beliebige Kombination von aus Buchstaben, Zahlen und Symbolen enthalten.",
-				"",
-				"Anmerkung: Es gibt keinen Weg, Ihr Schlüsselwort zu berechnen, auch wenn das Login, die Website und sogar das generierte Passwort bekannt sind. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten."
-			],
-			"q6": "Was kann mit erweiterten Einstellungen verändert werden?",
-			"a6": [
-				"* Die Passwortlänge und das Alphabet (binden an die Website). Manche Sevices besitzen bestimmte Beschränkungen, die man damit umgehen kann. Wir geben auch die Möglichkeit, Ihre Daten lokal zu speichern, um Ihre Zeit zu sparen, wenn Sie ein neues Passwort generieren wollen",
-				"* Der Zähler (bindet an die Website). Manchmal fordert die Serverrichtlinie, Ihr Passwort jeden Monat, jedes Jahr etc zu ändern. Als wir früher erwähnt haben, generiert Getpass die gleichen Ausgaben für die gleichen Eingaben, deswegen haben wir eine Zählervariable implementiert. Erhöhen Sie einfach den Wert des Zählers und bekommen Sie ein neues Passwort ohne Veränderungen an Login, Webseite oder Schlüsselwort. Dies wird wieder nur lokal gespeichert",
-				"* Die Scryptparameter (bindet an die ganze App). Sie müssen wissen was Sie machen, wenn Sie diese Parameter ändern. Als Resultat kann nicht nur die Komplexität Ihres Passworts zu- oder abnehnem sondern auch die Berechnungszeit kann sich erhöhen. Vergessen Sie auch nicht, dass Ihre Handys mehr Zeit für die gleichen Berechnungen benötigen",
-				"Weitere Informationen zur Scryptfunktion finden Sie unter [Wikipedia](https://de.wikipedia.org/wiki/Scrypt).",
-				"",
-				"Anmerkung: Alle diese Daten können exportiert / importiert werden, falls Sie sich entscheiden, ein anderes Gerät zu verwenden."
-			],
-			"q7": "Wofür dient das Bild neben dem Schlüsselwort?",
-			"a7": [
-				"Haben Sie bemerkt, dass Ihr Schlüsselwort versteckt ist? Wenn ja, dann ist das eine Art, wie man das Hash Ihres Schlüsselwortes visualisieren kann (auf Basis von jdenticon library). Sie können damit Ihr Schlüsselwort prüfen, während die Buchstaben versteckt bleiben."
-			],
-			"q8": "Sicherheitsanmerkungen",
-			"a8": [
-				"Das aller wichtigste, Getpass (jedes Platform oder Serviceimplementation) benutzt KEINE von Ihren Daten. Keine einzelne Postanforderung zu einem Hosting- oder einem anderen Server wird gemacht. Es ist auch kein Internetzugang benötigt. Alle Berechnungen werden auf Ihren Geräten durchgeführt. Der Sourcecode ist für alle Platforme verfügbar (in der Sektion 'Herunterladen').",
-				"",
-				"Zweitens, es gibt einen kleinen Unterschied zwischen einer lokalen Version (Handy, Desktop, Browsererweiterung) und der Serviceversion (Webseite getpass.io):",
-				"* Die Serviceversion speichert zwar keine von Ihren Daten aber besitzt nicht die komplette Funktionalität einer lokalen Version. Hauptanwendung: einmalige Passwortgenerierung, wenn Sie keinen Zugriff zu Ihrem lokalen Service haben",
-				"* Die lokale Version speichert (auch nur lokal) die Listen von Ihren Logins und Websites. Wir bestehen darauf, dass Ihre Login und Website keine geheimen Daten sind und relativ einfach im Internet gefunden werden können (meistens wird Ihre Handynummer oder Ihre E-Mail Adresse als Login benutzt, obwohl Sie natürlich können, alles was Sie wollen, in diese Felder in Getpass schreiben). Der Grund, warum wir dies speichern, ist, unseren Kunden eine bessere Erfahrung zu bieten, wenn ein Passwort generiert werden soll - nur mit 4 Klicks wählen Sie Ihr Login und die Website. Die Sicherheit wird damit nicht verringert, da Sie trotzdem die Möglichkeit haben, Ihre Daten zu verstecken und / oder Ihre eigene Schreibweise verwenden (z.B.  “git repos” anstatt “github” oder “google mail” anstatt ”gmail”)",
-				"",
-				"Das Schlüsselwort wird **nie** niergendwo gespeichert. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten.",
-				"",
-				"Anmerkung: bei jeder Eingabe sollten Sie die Groß- und Kleinschreibung beachten. Eine falsche Buchstabe in Login oder Website führt zu einem komplett verschiedenem Passwort."
-			],
-			"q9": "Sicherheitsempfehlungen",
-			"a9": [
-				"Es gibt mehr und weniger wichtige Services aus Sicht der Datensicherheit. Wir schränken Sie nicht ein, sie dürfen für verschiedene Websites veschiedene Schlüsselwörter benutzen aber dann müssen Sie sich merken, welches woran gebindet ist.",
-				"",
-				"Zum Beispiel für weniger wichtige Services können Sie ein einfaches Schlüsselwort verwenden wie '.NETdev2019', während für ein anderes (wie ein Bankkonto) etwas komplizierteres 'WhatAGre@t8267TimeToBeA%Developer%!'"
-			],
-			"q10": "Was sind die Vor- und Nachteile von Getpass?",
-			"a10": [
-				"Vorteile:",
-				"* Die App generiert verschiedene kryptographisch sichere Passwörter für jedes Konto, das Sie schützen wollen.",
-				"* Sie müssen sich nur Ihr Schlüsselwort merken.",
-				"* Getpass ist auf jedem Gerät rund um die Uhr verfügbar unter getpass.io",
-				"* Keine Ihrer Daten werden übertragen (es wird keine einzige POST-Anfrage an Server von Drittanbietern gesendet). Ihr Schlüsselwort wird nicht gespeichert (auch nicht lokal)",
-				"* Sie müssen keiner proprietären Software vertrauen, Ihre kritischen Daten zu schützen. Sie können useren Quellcode überprüfen und uns damit helfen Getpass zu verbessern",
-				"",
-				"Nachteile:",
-				"* Es dauert einige Zeit, um Ihre alte Passwörter durch von Getpass generierten zu ersetzen",
-				"* Wenn es sich um eine lokale Richtlinie handelt, bei der Sie gezwungen sind, Ihre Passwörter regelmäßig zu ändern, dann müssen wir zugeben, dass unsere Lösung mit dem Zähler nicht wirklich elegant ist."
-			],
-			"q11": "Was zu tun, wenn Ihr Passwort gehackt wurde?",
-			"a11": [
-				"In diesem Fall können Sie den Zähler-Parameter anwenden, indem Sie seinen Wert erhöhen (bei Default ist der Zähler auf '0'). Beachten Sie: ein geleaktes Passwort bedeutet nicht, dass auch Ihr Schlüsselwort dem Angreifer bekannt ist. Es ist praktisch unmöglich Ihr Schlüsselwort mittels Brute-Force zu berechnen.",
-				"",
-				"Eine andere Möglichkeit ist, den Websitenamen zu ändern, z.B. 'gmail_new', 'gmail_after-hacked' oder 'gmail.com' anstatt 'gmail'."
-			]
 		}
+	},
+	"qa": {
+		"q0": "Was ist Getpass?",
+		"a0": [
+			"Getpass ist ein platformübergreifender Passwort-Manager (Generator).",
+			"Dieses Programm lässt kriptographisch sichere Passwörte auf Basis von Eingabedaten generieren.",
+			"",
+			"Getpass benutzt eine hash-like Schlüsselableitungsfunktion (scrypt), die die gleichen Ausgaben für die gleichen Eingabeparameter erzeugt.",
+			"",
+			"Diese Funktion kann nicht rückgängig verwendet werden, um die Eingabeparameter aus dem Passwort zu erstellen.",
+			"Für fortgeschrittene Benutzer: Schauen Sie sich die Einstellungen für mehr Möglichkeiten an."
+		],
+		"q1": "Wie funktioniert Getpass",
+		"a1": [
+			"Basierend auf Kundendefinierten Eingabeparameter generiert die scrypt-Funktion ein kriptografisch sicheres Passwort.",
+			"",
+			"Beispiel:",
+			"* Website: **milkyway.com**  ",
+			"* Schlüsselwort: **2,52m light years away** ",
+			"",
+			"Ausgabe: **3q_q(MFWaMGeao+[CX**"
+		],
+		"q2": "Generator-Parameter",
+		"a2": [
+			"In meisten Fällen brauchen Sie nicht, etwas zu verändern, und Sie können die Standardeinstellungen verwenden. Sie finden mehr Informationen dazu in der Sektion 'Was kann mit erweiterten Einstellungen verändert werden?'",
+			"* Alphabet: Zahlen (0-9), A-Z, a-z, Sonderzeichen",
+			"* Passwortlänge: 18",
+			"* Zähler: 0",
+			"* Scryptparameter: N: 4096, r: 4, p: 1",
+			"",
+			"Anmerkung: Zur bequemen platformübergreifende Nutzung können Sie sowohl Generator-Parameter als auch Ihre Logins und Websites exportieren/importieren."
+		],
+		"q3": "Was ist ein Login?",
+		"a3": [
+			"Das Login ist ein Identikator des Nutzers auf einer Website.",
+			"Sie können als Login ein reelles Login für diese Website, eine E-Mail Adresse, Ihre Telefonnummer oder was ganz anderes verwenden.",
+			"",
+			"Für die meisten Fällen empfehlen wir Ihnen, die reellen Logins zu benutzen, weil Getpass sicher bleibt auch wenn Login und Website veröffentlicht sind.",
+			"Anmerkung: 'andromeda' und 'Andromeda' sind zwei verschiedene Loginwerte (beachten Sie Groß- und Kleinschreibung)"
+		],
+		"q4": "Was ist eine Website?",
+		"a4": [
+			"Die Website ist der Name des Services, für das Sie ein Passwort generieren wollen.",
+			"Sie kann genau wie das Login reell oder erdacht sein.",
+			"",
+			"Wir empfehlen aber, Ihre Daten ernst zu nehmen.",
+			"Anmerkung: 'milkyway.com', 'milkyway', 'milkyway com ' sind unterschiedliche Websitewerte."
+		],
+		"q5": "Was ist ein Schlüsselwort?",
+		"a5": [
+			"Das Schlüsselwort ist eine Folge von Symbolen, die zur Erstellung eines kryptographisch sicheren Passworts verwendet wird. Erwägen Sie es als ein Masterpasswort, um alle anderen Passwörter zu erzeugen. Es kann (und wir empfehlen es) eine beliebige Kombination von aus Buchstaben, Zahlen und Symbolen enthalten.",
+			"",
+			"Anmerkung: Es gibt keinen Weg, Ihr Schlüsselwort zu berechnen, auch wenn das Login, die Website und sogar das generierte Passwort bekannt sind. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten."
+		],
+		"q6": "Was kann mit erweiterten Einstellungen verändert werden?",
+		"a6": [
+			"* Die Passwortlänge und das Alphabet (binden an die Website). Manche Sevices besitzen bestimmte Beschränkungen, die man damit umgehen kann. Wir geben auch die Möglichkeit, Ihre Daten lokal zu speichern, um Ihre Zeit zu sparen, wenn Sie ein neues Passwort generieren wollen",
+			"* Der Zähler (bindet an die Website). Manchmal fordert die Serverrichtlinie, Ihr Passwort jeden Monat, jedes Jahr etc zu ändern. Als wir früher erwähnt haben, generiert Getpass die gleichen Ausgaben für die gleichen Eingaben, deswegen haben wir eine Zählervariable implementiert. Erhöhen Sie einfach den Wert des Zählers und bekommen Sie ein neues Passwort ohne Veränderungen an Login, Webseite oder Schlüsselwort. Dies wird wieder nur lokal gespeichert",
+			"* Die Scryptparameter (bindet an die ganze App). Sie müssen wissen was Sie machen, wenn Sie diese Parameter ändern. Als Resultat kann nicht nur die Komplexität Ihres Passworts zu- oder abnehnem sondern auch die Berechnungszeit kann sich erhöhen. Vergessen Sie auch nicht, dass Ihre Handys mehr Zeit für die gleichen Berechnungen benötigen",
+			"Weitere Informationen zur Scryptfunktion finden Sie unter [Wikipedia](https://de.wikipedia.org/wiki/Scrypt).",
+			"",
+			"Anmerkung: Alle diese Daten können exportiert / importiert werden, falls Sie sich entscheiden, ein anderes Gerät zu verwenden."
+		],
+		"q7": "Wofür dient das Bild neben dem Schlüsselwort?",
+		"a7": [
+			"Haben Sie bemerkt, dass Ihr Schlüsselwort versteckt ist? Wenn ja, dann ist das eine Art, wie man das Hash Ihres Schlüsselwortes visualisieren kann (auf Basis von jdenticon library). Sie können damit Ihr Schlüsselwort prüfen, während die Buchstaben versteckt bleiben."
+		],
+		"q8": "Sicherheitsanmerkungen",
+		"a8": [
+			"Das aller wichtigste, Getpass (jedes Platform oder Serviceimplementation) benutzt KEINE von Ihren Daten. Keine einzelne Postanforderung zu einem Hosting- oder einem anderen Server wird gemacht. Es ist auch kein Internetzugang benötigt. Alle Berechnungen werden auf Ihren Geräten durchgeführt. Der Sourcecode ist für alle Platforme verfügbar (in der Sektion 'Herunterladen').",
+			"",
+			"Zweitens, es gibt einen kleinen Unterschied zwischen einer lokalen Version (Handy, Desktop, Browsererweiterung) und der Serviceversion (Webseite getpass.io):",
+			"* Die Serviceversion speichert zwar keine von Ihren Daten aber besitzt nicht die komplette Funktionalität einer lokalen Version. Hauptanwendung: einmalige Passwortgenerierung, wenn Sie keinen Zugriff zu Ihrem lokalen Service haben",
+			"* Die lokale Version speichert (auch nur lokal) die Listen von Ihren Logins und Websites. Wir bestehen darauf, dass Ihre Login und Website keine geheimen Daten sind und relativ einfach im Internet gefunden werden können (meistens wird Ihre Handynummer oder Ihre E-Mail Adresse als Login benutzt, obwohl Sie natürlich können, alles was Sie wollen, in diese Felder in Getpass schreiben). Der Grund, warum wir dies speichern, ist, unseren Kunden eine bessere Erfahrung zu bieten, wenn ein Passwort generiert werden soll - nur mit 4 Klicks wählen Sie Ihr Login und die Website. Die Sicherheit wird damit nicht verringert, da Sie trotzdem die Möglichkeit haben, Ihre Daten zu verstecken und / oder Ihre eigene Schreibweise verwenden (z.B.  “git repos” anstatt “github” oder “google mail” anstatt ”gmail”)",
+			"",
+			"Das Schlüsselwort wird **nie** niergendwo gespeichert. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten.",
+			"",
+			"Anmerkung: bei jeder Eingabe sollten Sie die Groß- und Kleinschreibung beachten. Eine falsche Buchstabe in Login oder Website führt zu einem komplett verschiedenem Passwort."
+		],
+		"q9": "Sicherheitsempfehlungen",
+		"a9": [
+			"Es gibt mehr und weniger wichtige Services aus Sicht der Datensicherheit. Wir schränken Sie nicht ein, sie dürfen für verschiedene Websites veschiedene Schlüsselwörter benutzen aber dann müssen Sie sich merken, welches woran gebindet ist.",
+			"",
+			"Zum Beispiel für weniger wichtige Services können Sie ein einfaches Schlüsselwort verwenden wie '.NETdev2019', während für ein anderes (wie ein Bankkonto) etwas komplizierteres 'WhatAGre@t8267TimeToBeA%Developer%!'"
+		],
+		"q10": "Was sind die Vor- und Nachteile von Getpass?",
+		"a10": [
+			"Vorteile:",
+			"* Die App generiert verschiedene kryptographisch sichere Passwörter für jedes Konto, das Sie schützen wollen.",
+			"* Sie müssen sich nur Ihr Schlüsselwort merken.",
+			"* Getpass ist auf jedem Gerät rund um die Uhr verfügbar unter getpass.io",
+			"* Keine Ihrer Daten werden übertragen (es wird keine einzige POST-Anfrage an Server von Drittanbietern gesendet). Ihr Schlüsselwort wird nicht gespeichert (auch nicht lokal)",
+			"* Sie müssen keiner proprietären Software vertrauen, Ihre kritischen Daten zu schützen. Sie können useren Quellcode überprüfen und uns damit helfen Getpass zu verbessern",
+			"",
+			"Nachteile:",
+			"* Es dauert einige Zeit, um Ihre alte Passwörter durch von Getpass generierten zu ersetzen",
+			"* Wenn es sich um eine lokale Richtlinie handelt, bei der Sie gezwungen sind, Ihre Passwörter regelmäßig zu ändern, dann müssen wir zugeben, dass unsere Lösung mit dem Zähler nicht wirklich elegant ist."
+		],
+		"q11": "Was zu tun, wenn Ihr Passwort gehackt wurde?",
+		"a11": [
+			"In diesem Fall können Sie den Zähler-Parameter anwenden, indem Sie seinen Wert erhöhen (bei Default ist der Zähler auf '0'). Beachten Sie: ein geleaktes Passwort bedeutet nicht, dass auch Ihr Schlüsselwort dem Angreifer bekannt ist. Es ist praktisch unmöglich Ihr Schlüsselwort mittels Brute-Force zu berechnen.",
+			"",
+			"Eine andere Möglichkeit ist, den Websitenamen zu ändern, z.B. 'gmail_new', 'gmail_after-hacked' oder 'gmail.com' anstatt 'gmail'."
+		]
 	}
 }
