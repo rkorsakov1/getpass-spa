@@ -7,7 +7,8 @@ const paramName = 'lang';
 const fallbackLng = 'en';
 enum languages {
 	en = "en",
-	ru = "ru"
+	ru = "ru",
+	de = "de"
 }
 
 const getLanguages = (): string[] => Object.values(languages)
@@ -58,6 +59,9 @@ const getLanguageMeta = (inputLocale: string): ILanguageMeta => {
 	switch (inputLocale) {
 		case languages.ru:
 			return { name: 'Русский', assetPath: 'rus.png', code: 'ru' };
+
+		case languages.de:
+			return { name: 'Deutschland', assetPath: 'deu.png', code: 'de' };
 
 		case languages.en:
 		default:
