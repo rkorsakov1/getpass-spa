@@ -75,7 +75,7 @@
 			"length": "Passwortlänge",
 			"counter": "Zähler",
 			"scrypt": {
-				"warning": "**Achtung** Sie müssen wissen was Sie machen, wenn Sie diese Parameter ändern. Als Resultat kann nicht nur die Komplexität Ihres Passworts zu- oder abnehnem sondern auch die Berechnungszeit kann sich erhöhen.",
+				"warning": "**Achtung** Nur für fortgeschrittene Benutzer. Als Resultat der Veränderung dieser Parameter kann nicht nur die Komplexität Ihres Passworts zu- oder abnehnem sondern auch die Berechnungszeit kann sich erhöhen.",
 				"cost": "Schwierigkeitsfaktor",
 				"blockSize": "Größe des Blocks"
 			}
@@ -134,15 +134,15 @@
 			"Dieses Programm lässt kriptographisch sichere Passwörte auf Basis von Eingabedaten generieren.",
 			"",
 			"Getpass benutzt eine hash-like Schlüsselableitungsfunktion (scrypt), die die gleichen Ausgaben für die gleichen Eingabeparameter erzeugt.",
-			"",
 			"Diese Funktion kann nicht rückgängig verwendet werden, um die Eingabeparameter aus dem Passwort zu erstellen.",
 			"Für fortgeschrittene Benutzer: Schauen Sie sich die Einstellungen für mehr Möglichkeiten an."
 		],
-		"q1": "Wie funktioniert Getpass",
+		"q1": "Wie funktioniert Getpass?",
 		"a1": [
 			"Basierend auf Kundendefinierten Eingabeparameter generiert die scrypt-Funktion ein kriptografisch sicheres Passwort.",
 			"",
 			"Beispiel:",
+			"* Login: **andromeda**  ",
 			"* Website: **milkyway.com**  ",
 			"* Schlüsselwort: **2,52m light years away** ",
 			"",
@@ -150,7 +150,7 @@
 		],
 		"q2": "Generator-Parameter",
 		"a2": [
-			"In meisten Fällen brauchen Sie nicht, etwas zu verändern, und Sie können die Standardeinstellungen verwenden. Sie finden mehr Informationen dazu in der Sektion 'Was kann mit erweiterten Einstellungen verändert werden?'",
+			"In meisten Fällen brauchen Sie nicht, etwas zu verändern. Sie können die Standardeinstellungen verwenden. Sie finden mehr Informationen dazu in der Sektion 'Was kann mit erweiterten Einstellungen verändert werden?'",
 			"* Alphabet: Zahlen (0-9), A-Z, a-z, Sonderzeichen",
 			"* Passwortlänge: 18",
 			"* Zähler: 0",
@@ -172,7 +172,7 @@
 			"Sie kann genau wie das Login reell oder erdacht sein.",
 			"",
 			"Wir empfehlen aber, Ihre Daten ernst zu nehmen.",
-			"Anmerkung: 'milkyway.com', 'milkyway', 'milkyway com ' sind unterschiedliche Websitewerte."
+			"Anmerkung: 'milkyway.com', 'milkyway', 'milkyway com' sind unterschiedliche Websitewerte."
 		],
 		"q5": "Was ist ein Schlüsselwort?",
 		"a5": [
@@ -191,7 +191,7 @@
 		],
 		"q7": "Wofür dient das Bild neben dem Schlüsselwort?",
 		"a7": [
-			"Haben Sie bemerkt, dass Ihr Schlüsselwort versteckt ist? Wenn ja, dann ist das eine Art, wie man das Hash Ihres Schlüsselwortes visualisieren kann (auf Basis von jdenticon library). Sie können damit Ihr Schlüsselwort prüfen, während die Buchstaben versteckt bleiben."
+			"Das ist ist das eine Art, wie man sich das Hash Ihres Schlüsselwortes vorstellen kann (auf Basis von jdenticon library). Sie können damit Ihr Schlüsselwort prüfen, während die Buchstaben versteckt bleiben."
 		],
 		"q8": "Sicherheitsanmerkungen",
 		"a8": [
@@ -201,7 +201,7 @@
 			"* Die Serviceversion speichert zwar keine von Ihren Daten aber besitzt nicht die komplette Funktionalität einer lokalen Version. Hauptanwendung: einmalige Passwortgenerierung, wenn Sie keinen Zugriff zu Ihrem lokalen Service haben",
 			"* Die lokale Version speichert (auch nur lokal) die Listen von Ihren Logins und Websites. Wir bestehen darauf, dass Ihre Login und Website keine geheimen Daten sind und relativ einfach im Internet gefunden werden können (meistens wird Ihre Handynummer oder Ihre E-Mail Adresse als Login benutzt, obwohl Sie natürlich können, alles was Sie wollen, in diese Felder in Getpass schreiben). Der Grund, warum wir dies speichern, ist, unseren Kunden eine bessere Erfahrung zu bieten, wenn ein Passwort generiert werden soll - nur mit 4 Klicks wählen Sie Ihr Login und die Website. Die Sicherheit wird damit nicht verringert, da Sie trotzdem die Möglichkeit haben, Ihre Daten zu verstecken und / oder Ihre eigene Schreibweise verwenden (z.B.  “git repos” anstatt “github” oder “google mail” anstatt ”gmail”)",
 			"",
-			"Das Schlüsselwort wird **nie** niergendwo gespeichert. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten.",
+			"Das Schlüsselwort wird **nie** nirgendwo gespeichert. Das ist das wichtigste Teil der Daten und versuchen Sie, es möglichst geheim zu halten.",
 			"",
 			"Anmerkung: bei jeder Eingabe sollten Sie die Groß- und Kleinschreibung beachten. Eine falsche Buchstabe in Login oder Website führt zu einem komplett verschiedenem Passwort."
 		],
@@ -221,7 +221,7 @@
 			"* Sie müssen keiner proprietären Software vertrauen, Ihre kritischen Daten zu schützen. Sie können useren Quellcode überprüfen und uns damit helfen Getpass zu verbessern",
 			"",
 			"Nachteile:",
-			"* Es dauert einige Zeit, um Ihre alte Passwörter durch von Getpass generierten zu ersetzen",
+			"* Es wird einige Zeit benötigt, um Ihre alte Passwörter durch von Getpass generierten zu ersetzen",
 			"* Wenn es sich um eine lokale Richtlinie handelt, bei der Sie gezwungen sind, Ihre Passwörter regelmäßig zu ändern, dann müssen wir zugeben, dass unsere Lösung mit dem Zähler nicht wirklich elegant ist."
 		],
 		"q11": "Was zu tun, wenn Ihr Passwort gehackt wurde?",
