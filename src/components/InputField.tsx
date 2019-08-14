@@ -29,6 +29,7 @@ const InputField = ({ label, value, onChange, disabled, adornment }: Props): JSX
 
 	return (
 		<TextField
+			autoComplete="off"
 			aria-label={`${label} value`}
 			style={{ marginBottom: '8px', }}
 			disabled={disabled === undefined ? false : disabled}

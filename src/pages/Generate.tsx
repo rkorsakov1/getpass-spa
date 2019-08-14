@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CardContent, CardActions, Grid, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, IconButton } from '@material-ui/core';
 
 import { Loading, InputField, SwitchField, PasswordField, NumericInputField, NotificationContext, CardWrapper, MarkDown, TitleWrapper } from 'components';
