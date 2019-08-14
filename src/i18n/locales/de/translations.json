@@ -68,13 +68,17 @@
 			"secret": "Schlüsselwort"
 		},
 		"settings": {
-			"number": "Zahlen (0-9)",
-			"upper": "Großbuchstaben (A-Z)",
-			"lower": "Kleinbuchstaben (a-z)",
-			"special": "Sonderzeichen (!#$%&()*+,-.:;<=>?@[]^_{})",
-			"length": "Passwortlänge",
-			"counter": "Zähler",
+			"advanced": {
+				"title": "Erweiterte Einstellungen",
+				"number": "Zahlen (0-9)",
+				"upper": "Großbuchstaben (A-Z)",
+				"lower": "Kleinbuchstaben (a-z)",
+				"special": "Sonderzeichen (!#$%&()*+,-.:;<=>?@[]^_{})",
+				"length": "Passwortlänge",
+				"counter": "Zähler"
+			},
 			"scrypt": {
+				"title": "Core-Optimierungen",
 				"warning": "**Achtung** Nur für fortgeschrittene Benutzer. Als Resultat der Veränderung dieser Parameter kann nicht nur die Komplexität Ihres Passworts zu- oder abnehnem sondern auch die Berechnungszeit kann sich erhöhen.",
 				"cost": "Schwierigkeitsfaktor",
 				"blockSize": "Größe des Blocks"
