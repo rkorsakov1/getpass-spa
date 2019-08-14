@@ -62,6 +62,16 @@ const template = ({ helmet, markup, assets, initialI18nStore, initialLanguage, s
 	<meta charSet='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135651539-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-135651539-1');
+	</script>
+
 	<link rel="manifest" href="/manifest.json">
 	<style id="jss-server-side">${ssrCss}</style>
 
