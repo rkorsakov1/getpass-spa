@@ -16,9 +16,10 @@ interface IValid {
 }
 
 const Generate: React.FC = (): JSX.Element => {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 	const m = (path: string): string => t(path, { joinArrays: '  \n', });
 
+	const [language, setLanguage] = React.useState<string>();
 	const [valid, setValid] = React.useState<IValid>({
 		message: t('generate.mainButton.loginMissing'),
 		isValid: false
@@ -65,9 +66,10 @@ const Generate: React.FC = (): JSX.Element => {
 		}
 	}
 
-	useEffect((): void => {
+	if (language != i18n.language) {
 		validate(state);
-	}, []);
+		setLanguage(i18n.language);
+	}
 
 	const onChange = (propName: string, value: boolean | number | string): void => {
 		const newState = { ...state, [propName]: value };
