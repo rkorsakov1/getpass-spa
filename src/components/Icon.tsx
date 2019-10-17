@@ -8,7 +8,7 @@ interface IconProps {
 	onClick: () => void;
 }
 
-const Icon: React.FC<IconProps> = ({ tooltip, children, onClick, enabled }): JSX.Element => (
+const Icon: React.FC<IconProps> = ({ tooltip, children, onClick, enabled = true }): JSX.Element => (
 	<Tooltip TransitionComponent={Zoom} title={tooltip} style={{ fontSize: 40 }}>
 		<div>
 			<IconButton
@@ -21,9 +21,5 @@ const Icon: React.FC<IconProps> = ({ tooltip, children, onClick, enabled }): JSX
 		</div>
 	</Tooltip>
 );
-
-Icon.defaultProps = {
-	enabled: true,
-};
 
 export default Icon;

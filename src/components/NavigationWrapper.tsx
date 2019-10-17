@@ -7,8 +7,9 @@ import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from "react-router";
 import LanguagePicker from './LanguagePicker';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import { GithubCircle } from 'mdi-material-ui';
 
-const styles = (theme: Theme): Record<"menuButton" | "drawer" | "content", CSSProperties | (() => CSSProperties)> => createStyles({
+const styles = (theme: Theme): Record<"menuButton" | "drawer" | "content" | "repository", CSSProperties | (() => CSSProperties)> => createStyles({
 	menuButton: {
 		[theme.breakpoints.up('sm')]: {
 			display: 'none',
@@ -24,6 +25,10 @@ const styles = (theme: Theme): Record<"menuButton" | "drawer" | "content", CSSPr
 		flexGrow: 1,
 		padding: 10,
 	},
+	repository: {
+		margin: "0px 8px 0px 32px",
+		color: "black"
+	}
 });
 
 interface NavigationProps extends WithStyles<typeof styles>, RouteComponentProps {
@@ -48,6 +53,22 @@ const NavigationWrapper: React.FC<NavigationProps> =
 			history.push(`/${language}${destination}`);
 		};
 
+		const RepositoryButton = () => (
+			<IconButton
+				className={classes.repository}
+				onClick={(): Window | null => window.open("https://github.com/stellarbear/getpass", '_blank')} >
+				<GithubCircle />
+			</IconButton>
+		)
+		const LanguageButton = (): JSX.Element => <LanguagePicker inverted={true} />
+
+		const RepositoryAndLanguageButton = () => (
+			<div>
+				{RepositoryButton()}
+				{LanguageButton()}
+			</div>
+		)
+		
 		const renderNavigationList = (handleChange: boolean): JSX.Element => (
 			<React.Fragment>
 				<Button onClick={(): void => handleNavigation('/faq', handleChange)}>{t('navigation.qa')}</Button>
@@ -55,7 +76,8 @@ const NavigationWrapper: React.FC<NavigationProps> =
 				<Button onClick={(): void => handleNavigation('/lite', handleChange)}>{t('navigation.random')}</Button>
 				<Button onClick={(): void => handleNavigation('/download', handleChange)}>{t('navigation.download')}</Button>
 				<Button disabled onClick={(): void => handleNavigation('/', handleChange)}>{t('navigation.about')}</Button>
-				{!handleChange ? <LanguagePicker /> : <></>}
+
+				{!handleChange ? RepositoryAndLanguageButton() : <></>}
 			</React.Fragment>
 		);
 
@@ -90,8 +112,6 @@ const NavigationWrapper: React.FC<NavigationProps> =
 
 		);
 
-		const LanguageButton = (): JSX.Element => <LanguagePicker inverted={true} />
-
 		const MenuButton = (): JSX.Element => <IconButton
 			color="inherit"
 			aria-label="Open drawer"
@@ -102,11 +122,11 @@ const NavigationWrapper: React.FC<NavigationProps> =
 		</IconButton>;
 
 		const LeftButton = (): JSX.Element => {
-			return (rtl) ? LanguageButton() : MenuButton();
+			return (rtl) ? RepositoryAndLanguageButton() : MenuButton();
 		};
 
 		const RightButton = (): JSX.Element => {
-			return (rtl) ? MenuButton() : LanguageButton();
+			return (rtl) ? MenuButton() : RepositoryAndLanguageButton();
 		};
 
 		const renderMobileAppBar = (): JSX.Element => {
