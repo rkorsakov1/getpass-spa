@@ -53,7 +53,7 @@ const NavigationWrapper: React.FC<NavigationProps> =
 			history.push(`/${language}${destination}`);
 		};
 
-		const RepositoryButton = () => (
+		const RepositoryButton = (): JSX.Element => (
 			<IconButton
 				className={classes.repository}
 				onClick={(): Window | null => window.open("https://github.com/stellarbear/getpass", '_blank')} >
@@ -62,13 +62,13 @@ const NavigationWrapper: React.FC<NavigationProps> =
 		)
 		const LanguageButton = (): JSX.Element => <LanguagePicker inverted={true} />
 
-		const RepositoryAndLanguageButton = () => (
+		const RepositoryAndLanguageButton = (): JSX.Element => (
 			<div>
 				{RepositoryButton()}
 				{LanguageButton()}
 			</div>
 		)
-		
+
 		const renderNavigationList = (handleChange: boolean): JSX.Element => (
 			<React.Fragment>
 				<Button onClick={(): void => handleNavigation('/faq', handleChange)}>{t('navigation.qa')}</Button>
