@@ -65,7 +65,7 @@
 }
 
 .desktop .background .wave._three {
-	opacity: 0.9;
+	opacity: 1;
 	animation: humming 34s infinite linear;
 }
 
