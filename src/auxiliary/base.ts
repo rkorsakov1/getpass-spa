@@ -79,14 +79,15 @@ const base = ({ alphabet, input }: BaseProps): string => {
 		const bitIndex = i * bitCount;
 
 		const bitArray = data.slice(bitIndex, bitIndex + bitCount);
-		let number = parseInt(bitArray, 2);
+		let number = BigInt(`0b${bitArray}`);
+		const alphabetLength = BigInt(alphabet.length);
 
 		for (let c = 0; c < charCount; c++) {
-			result += alphabet[number % alphabet.length];
-			number = Math.trunc(number / alphabet.length);
+			result += alphabet[Number(number % alphabetLength)];
+			number = number / alphabetLength;
 		}
 	}
-
+	
 	return result;
 }
 
