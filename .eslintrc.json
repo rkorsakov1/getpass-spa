@@ -9,7 +9,7 @@
     "browser": true,
     "node": true,
 		"jest": true,
-		"es6": true
+		"es2020": true
   },
   "rules": {
 		"react/prop-types": 0,
