@@ -1,4 +1,7 @@
 # <img src="public/favicon.ico" width="32" height="32"> getpass-spa
+
+* New repository: https://github.com/rkorsakov1/getpass
+
 * Main information is located at getpass main [[repo]](https://github.com/rkorsakov1/getpass)
 * Can be used offline (PWA ready)
 
